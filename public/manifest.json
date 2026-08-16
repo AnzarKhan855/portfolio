@@ -1,0 +1,16 @@
+{
+  "name": "Anzar Khan | AI Engineer Portfolio",
+  "short_name": "Anzar AI",
+  "description": "Interactive 3D Portfolio & AI Product Showcase of Anzar Khan",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#05060a",
+  "theme_color": "#05060a",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}
