@@ -19,6 +19,16 @@ export interface Project {
   roadmap?: { task: string; status: 'completed' | 'in-progress' }[];
 }
 
+export const DECISIONLENS = {
+  frontend: 'https://decisionlens.vercel.app',
+  backend: 'https://decisionlens-api.onrender.com',
+  docs: 'https://decisionlens-api.onrender.com/docs',
+  github: 'https://github.com/AnzarKhan855/decisionlens-ai',
+  version: 'v1.0.0-alpha',
+  status: 'CURRENTLY UNDER ACTIVE DEVELOPMENT',
+  deployment: 'LIVE NOW — PRODUCTION DEPLOYMENT',
+};
+
 export const PERSONAL_INFO = {
   name: 'Anzar Khan',
   headline: 'AI Engineer building production-grade intelligent systems.',
@@ -261,9 +271,13 @@ export const PROJECTS: Project[] = [
     title: 'DecisionLens AI',
     tagline: 'Enterprise Decision Intelligence Platform',
     status: 'Currently Under Active Development',
-    isUnreleased: true,
+    isUnreleased: false,
     category: 'Flagship Enterprise AI',
     featured: true,
+    githubUrl: 'https://github.com/AnzarKhan855/decisionlens-ai',
+    demoUrl: 'https://decisionlens.vercel.app',
+    backendUrl: 'https://decisionlens-api.onrender.com',
+    apiDocsUrl: 'https://decisionlens-api.onrender.com/docs',
     description:
       'Transforms raw business datasets into executive-ready intelligence — automatic dataset detection, profiling, KPI generation, anomaly detection, AI-generated insights, forecasting, recommendations, and natural-language business querying via an AI Copilot.',
     metrics: [

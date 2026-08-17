@@ -101,6 +101,58 @@ export const Hero: React.FC = () => {
           </button>
         </motion.div>
 
+        {/* 🌐 Live Products Quick Jump Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-12 flex flex-wrap items-center justify-center gap-2.5 max-w-3xl"
+        >
+          <span className="text-xs font-mono text-[#00E0FF] uppercase tracking-wider mr-2 flex items-center space-x-1">
+            <span>🌐 Live Products:</span>
+          </span>
+          <a
+            href="https://decisionlens.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            onMouseEnter={() => audioEngine.playHover()}
+            className="px-3 py-1 rounded-lg bg-[#090c15] border border-[#00E0FF]/40 text-[#00E0FF] hover:bg-[#00E0FF]/10 text-xs font-mono transition-all flex items-center space-x-1.5"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+            <span>DecisionLens AI</span>
+          </a>
+          <a
+            href="https://campusagent-ai.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            onMouseEnter={() => audioEngine.playHover()}
+            className="px-3 py-1 rounded-lg bg-[#090c15] border border-[#7C5CFF]/40 text-purple-300 hover:bg-[#7C5CFF]/10 text-xs font-mono transition-all flex items-center space-x-1.5"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-purple-400" />
+            <span>CampusAgent AI</span>
+          </a>
+          <a
+            href="https://evalmentor-ai.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            onMouseEnter={() => audioEngine.playHover()}
+            className="px-3 py-1 rounded-lg bg-[#090c15] border border-emerald-400/40 text-emerald-300 hover:bg-emerald-400/10 text-xs font-mono transition-all flex items-center space-x-1.5"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            <span>EvalMentor AI</span>
+          </a>
+          <a
+            href="https://ats-resumebuilder.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            onMouseEnter={() => audioEngine.playHover()}
+            className="px-3 py-1 rounded-lg bg-[#090c15] border border-slate-700 text-slate-300 hover:bg-slate-800 text-xs font-mono transition-all flex items-center space-x-1.5"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-slate-400" />
+            <span>ATS Resume Builder</span>
+          </a>
+        </motion.div>
+
         {/* Magnetic Social Links Strip (Verbatim links) */}
         <motion.div
           initial={{ opacity: 0 }}

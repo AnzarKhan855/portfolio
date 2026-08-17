@@ -13,6 +13,7 @@ import { TechUniverseCanvas } from '@/components/3d/TechUniverseCanvas';
 import { GitHubDashboard } from '@/components/GitHubDashboard';
 import { ExperienceTimeline } from '@/components/ExperienceTimeline';
 import { AILab } from '@/components/AILab';
+import { WhyHireMe } from '@/components/WhyHireMe';
 import { ContactSection } from '@/components/ContactSection';
 import { Footer } from '@/components/Footer';
 import { CustomCursor } from '@/components/ui/CustomCursor';
@@ -71,6 +72,7 @@ export default function Home() {
             <GitHubDashboard />
             <ExperienceTimeline />
             <AILab />
+            <WhyHireMe />
             <ContactSection />
             <Footer />
           </div>

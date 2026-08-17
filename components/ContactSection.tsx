@@ -29,11 +29,13 @@ export const ContactSection: React.FC = () => {
     setErrorMessage('');
     setTerminalStep('Initializing Secure Channel...');
 
-    // Animated Terminal Transmission Progression
-    const stepTimer1 = setTimeout(() => setTerminalStep('Encrypting Payload...'), 400);
-    const stepTimer2 = setTimeout(() => setTerminalStep('Connecting...'), 800);
-    const stepTimer3 = setTimeout(() => setTerminalStep('Transmitting...'), 1200);
-    const stepTimer4 = setTimeout(() => setTerminalStep('Awaiting Response...'), 1600);
+    // Animated Terminal Transmission Progression per Master Prompt V8 Spec
+    const stepTimer1 = setTimeout(() => setTerminalStep('Encrypting Payload...'), 250);
+    const stepTimer2 = setTimeout(() => setTerminalStep('Connecting...'), 500);
+    const stepTimer3 = setTimeout(() => setTerminalStep('Routing via Resend API...'), 750);
+    const stepTimer4 = setTimeout(() => setTerminalStep('Delivered to Anzar Khan...'), 1000);
+    const stepTimer5 = setTimeout(() => setTerminalStep('Confirmation Sent...'), 1250);
+    const stepTimer6 = setTimeout(() => setTerminalStep('Awaiting Response...'), 1500);
 
     try {
       const res = await fetch('/api/contact', {
@@ -46,14 +48,16 @@ export const ContactSection: React.FC = () => {
 
       const data = await res.json();
 
-      // Clear timers if completed fast
+      // Clear timers if completed
       clearTimeout(stepTimer1);
       clearTimeout(stepTimer2);
       clearTimeout(stepTimer3);
       clearTimeout(stepTimer4);
+      clearTimeout(stepTimer5);
+      clearTimeout(stepTimer6);
 
       if (res.ok && data.success) {
-        setTerminalStep('✓ Transmission Successful');
+        setTerminalStep('✓ Transmission Successful & Confirmation Sent');
         audioEngine.playChime();
         setStatus('success');
         // Clear form only after a successful response
@@ -68,6 +72,8 @@ export const ContactSection: React.FC = () => {
       clearTimeout(stepTimer2);
       clearTimeout(stepTimer3);
       clearTimeout(stepTimer4);
+      clearTimeout(stepTimer5);
+      clearTimeout(stepTimer6);
       console.error('Transmission error:', err);
       setTerminalStep('Transmission Failed');
       setStatus('error');
