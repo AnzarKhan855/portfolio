@@ -20,7 +20,7 @@ export interface Project {
 }
 
 export const DECISIONLENS = {
-  frontend: 'https://decisionlens.vercel.app',
+  frontend: 'https://decisionlens-enterprise-analytics.vercel.app',
   backend: 'https://decisionlens-api.onrender.com',
   docs: 'https://decisionlens-api.onrender.com/docs',
   github: 'https://github.com/AnzarKhan855/decisionlens-ai',
@@ -275,7 +275,7 @@ export const PROJECTS: Project[] = [
     category: 'Flagship Enterprise AI',
     featured: true,
     githubUrl: 'https://github.com/AnzarKhan855/decisionlens-ai',
-    demoUrl: 'https://decisionlens.vercel.app',
+    demoUrl: 'https://decisionlens-enterprise-analytics.vercel.app',
     backendUrl: 'https://decisionlens-api.onrender.com',
     apiDocsUrl: 'https://decisionlens-api.onrender.com/docs',
     description:

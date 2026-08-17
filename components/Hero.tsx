@@ -112,7 +112,7 @@ export const Hero: React.FC = () => {
             <span>🌐 Live Products:</span>
           </span>
           <a
-            href="https://decisionlens.vercel.app"
+            href="https://decisionlens-enterprise-analytics.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
             onMouseEnter={() => audioEngine.playHover()}

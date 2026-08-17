@@ -4,12 +4,10 @@ import React, { useState } from 'react';
 import { BootSequence } from '@/components/BootSequence';
 import { Navbar } from '@/components/Navbar';
 import { CommandPalette } from '@/components/CommandPalette';
-import { BackgroundNeuralCanvas } from '@/components/3d/BackgroundNeuralCanvas';
 import { Hero } from '@/components/Hero';
 import { AboutStory } from '@/components/AboutStory';
 import { DecisionLensShowcase } from '@/components/DecisionLensShowcase';
 import { ProjectsSection } from '@/components/ProjectsSection';
-import { TechUniverseCanvas } from '@/components/3d/TechUniverseCanvas';
 import { GitHubDashboard } from '@/components/GitHubDashboard';
 import { ExperienceTimeline } from '@/components/ExperienceTimeline';
 import { AILab } from '@/components/AILab';
@@ -18,7 +16,22 @@ import { ContactSection } from '@/components/ContactSection';
 import { Footer } from '@/components/Footer';
 import { CustomCursor } from '@/components/ui/CustomCursor';
 import { SmoothScrollProvider } from '@/components/SmoothScrollProvider';
-import { GlitchPostProcessingOverlay } from '@/components/3d/GlitchPostProcessing';
+import dynamic from 'next/dynamic';
+
+const BackgroundNeuralCanvas = dynamic(
+  () => import('@/components/3d/BackgroundNeuralCanvas').then((mod) => mod.BackgroundNeuralCanvas),
+  { ssr: false }
+);
+
+const TechUniverseCanvas = dynamic(
+  () => import('@/components/3d/TechUniverseCanvas').then((mod) => mod.TechUniverseCanvas),
+  { ssr: false }
+);
+
+const GlitchPostProcessingOverlay = dynamic(
+  () => import('@/components/3d/GlitchPostProcessing').then((mod) => mod.GlitchPostProcessingOverlay),
+  { ssr: false }
+);
 
 export default function Home() {
   const [booted, setBooted] = useState(false);

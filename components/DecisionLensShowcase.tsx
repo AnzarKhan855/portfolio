@@ -351,9 +351,9 @@ export const DecisionLensShowcase: React.FC = () => {
               </div>
             </div>
 
-            <div className="p-4 rounded-xl bg-[#7C5CFF]/15 border border-[#7C5CFF]/40 text-xs font-mono text-[#00E0FF] flex items-center space-x-2">
+             <div className="p-4 rounded-xl bg-[#7C5CFF]/15 border border-[#7C5CFF]/40 text-xs font-mono text-[#00E0FF] flex items-center space-x-2">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-              <span>System Status: DecisionLens AI is deployed live on staging infrastructure. Modules remain under active continuous development.</span>
+              <span>System Status: DecisionLens AI is deployed live on production infrastructure. Modules remain under active continuous development.</span>
             </div>
           </div>
         </div>
@@ -369,24 +369,18 @@ export const DecisionLensShowcase: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {project.roadmap?.map((item, idx) => (
-              <div
-                key={idx}
-                className="p-4 rounded-xl bg-[#090c15] border border-slate-800 flex items-center justify-between font-mono text-xs"
-              >
-                <span className="text-slate-200 flex items-center space-x-2">
-                  <span className="text-[#00E0FF]">0{idx + 1}.</span>
-                  <span>{item.task}</span>
+            {project.roadmap?.map((item) => (
+              <div key={item.task} className="flex items-center justify-between p-3.5 rounded-xl bg-[#090c15] border border-slate-800">
+                <span className="text-xs font-mono text-slate-200">{item.task}</span>
+                <span
+                  className={`text-[10px] font-mono px-2.5 py-1 rounded-full ${
+                    item.status === 'completed'
+                      ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
+                      : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                  }`}
+                >
+                  {item.status === 'completed' ? '✓ Deployed' : '⚡ In Engineering'}
                 </span>
-                {item.status === 'completed' ? (
-                  <span className="px-2.5 py-0.5 rounded bg-emerald-500/15 border border-emerald-400/40 text-emerald-400 text-[10px]">
-                    ✅ Completed
-                  </span>
-                ) : (
-                  <span className="px-2.5 py-0.5 rounded bg-amber-500/15 border border-amber-400/40 text-amber-300 text-[10px] animate-pulse">
-                    🔄 Under Active Development
-                  </span>
-                )}
               </div>
             ))}
           </div>
@@ -395,8 +389,8 @@ export const DecisionLensShowcase: React.FC = () => {
         {/* Enterprise Preview Wireframe Mockup */}
         <SaaSMockupFrame
           title="DecisionLens AI — Executive Wireframe Teaser"
-          url="https://decisionlens.ai/enterprise-preview"
-          statusBadge="DEVELOPMENT MOCKUP"
+          url="https://decisionlens-enterprise-analytics.vercel.app"
+          statusBadge="LIVE PRODUCTION PLATFORM"
         >
           <div className="space-y-6 p-4">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
