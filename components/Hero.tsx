@@ -28,7 +28,7 @@ export const Hero: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#090c15]/90 border border-[#7C5CFF]/40 text-[#00E0FF] text-xs font-mono mb-8 backdrop-blur-xl shadow-[0_0_25px_rgba(124,92,255,0.25)]"
         >
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
@@ -40,7 +40,7 @@ export const Hero: React.FC = () => {
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.15 }}
+          transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="text-6xl sm:text-8xl lg:text-9xl font-black tracking-tight text-white font-display uppercase mb-4 isolate-text transform-gpu"
         >
           <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-slate-100 to-slate-400 inline-block">
@@ -52,7 +52,7 @@ export const Hero: React.FC = () => {
         <motion.p
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="text-lg sm:text-2xl lg:text-3xl font-mono text-[#00E0FF] font-medium glow-cyan max-w-4xl mb-4 leading-snug"
         >
           {PERSONAL_INFO.headline}
@@ -62,7 +62,7 @@ export const Hero: React.FC = () => {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="text-xs sm:text-sm font-mono text-slate-400 max-w-2xl mb-12 flex items-center justify-center space-x-2"
         >
           <Terminal className="w-4 h-4 text-[#7C5CFF]" />
@@ -73,9 +73,9 @@ export const Hero: React.FC = () => {
 
         {/* Action Controls & Enter the Lab Cue */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-16"
         >
           {/* Main "Enter the Lab" Scroll Cue */}
@@ -105,7 +105,7 @@ export const Hero: React.FC = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.7 }}
+          transition={{ duration: 1, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="flex items-center space-x-8 text-slate-400 font-mono text-xs border-t border-slate-900 pt-6"
         >
           <a

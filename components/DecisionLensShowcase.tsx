@@ -61,6 +61,29 @@ export const DecisionLensShowcase: React.FC = () => {
           </div>
         </div>
 
+        {/* Priority 10 — DecisionLens Live Integration & Deployment Telemetry Strip */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+          <div className="glass-panel-active p-3.5 rounded-xl border border-[#00E0FF]/30 font-mono text-xs">
+            <div className="text-[10px] text-slate-400 uppercase">Release Stage</div>
+            <div className="text-[#00E0FF] font-bold mt-0.5">v1.0.0-alpha</div>
+          </div>
+          <div className="glass-panel-active p-3.5 rounded-xl border border-emerald-400/30 font-mono text-xs">
+            <div className="text-[10px] text-slate-400 uppercase">Deployment Status</div>
+            <div className="text-emerald-400 font-bold mt-0.5 flex items-center space-x-1.5">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+              <span>Staging Active</span>
+            </div>
+          </div>
+          <div className="glass-panel-active p-3.5 rounded-xl border border-[#7C5CFF]/30 font-mono text-xs">
+            <div className="text-[10px] text-slate-400 uppercase">Engine Core</div>
+            <div className="text-purple-300 font-bold mt-0.5">FastAPI + Qdrant</div>
+          </div>
+          <div className="glass-panel-active p-3.5 rounded-xl border border-amber-400/30 font-mono text-xs">
+            <div className="text-[10px] text-slate-400 uppercase">Access Tier</div>
+            <div className="text-amber-300 font-bold mt-0.5">Enterprise Staging</div>
+          </div>
+        </div>
+
         {/* Positioning Statement */}
         <p className="text-slate-200 max-w-4xl text-base sm:text-xl mb-12 leading-relaxed font-sans">
           {project.description}

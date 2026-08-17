@@ -20,6 +20,37 @@ export const AboutStory: React.FC = () => {
   return (
     <section id="about" className="py-24 relative overflow-hidden bg-[#05060a]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Professional Summary Section (Priority 9) */}
+        <div className="mb-16 glass-panel-active p-8 sm:p-12 rounded-3xl border border-[#00E0FF]/30 relative overflow-hidden shadow-2xl">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[#00E0FF]/10 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="flex items-center space-x-2 text-xs font-mono text-[#00E0FF] uppercase tracking-widest mb-3">
+            <span className="w-2 h-2 rounded-full bg-[#00E0FF] animate-pulse" />
+            <span>AI ENGINEER {`//`} BUILDING ENTERPRISE AI SYSTEMS</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-5xl font-black text-white font-display uppercase tracking-tight mb-6 isolate-text transform-gpu">
+            Transforming Complex Business Problems into <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#00E0FF] via-[#7C5CFF] to-[#00FFA3] inline-block">Intelligent Software</span>
+          </h2>
+
+          <p className="text-slate-200 text-base sm:text-xl font-sans leading-relaxed max-w-5xl mb-6">
+            I build production-ready AI applications combining Large Language Models, Retrieval-Augmented Generation (RAG), intelligent automation, and modern full-stack engineering.
+          </p>
+
+          <p className="text-slate-400 text-sm sm:text-base font-sans leading-relaxed max-w-5xl mb-6">
+            My work focuses on transforming complex business problems into intelligent software that delivers measurable value through predictive analytics, enterprise dashboards, AI copilots, and autonomous workflows. Currently pursuing B.Tech in Artificial Intelligence & Machine Learning while building scalable AI products including DecisionLens, CampusAgent AI, EvalMentor AI, and ATS Resume Builder.
+          </p>
+
+          {/* V4 Specialization Highlights */}
+          <div className="flex flex-wrap gap-2 pt-2 border-t border-slate-800">
+            {['Enterprise AI Systems', 'RAG Architectures', 'Agentic AI', 'Predictive Analytics', 'AI Automation', 'Full-Stack AI Development'].map((spec) => (
+              <span key={spec} className="px-3 py-1 rounded-full bg-[#090c18] border border-[#00E0FF]/30 text-[#00E0FF] font-mono text-xs">
+                ⚡ {spec}
+              </span>
+            ))}
+          </div>
+        </div>
+
         {/* Section Header */}
         <div className="flex items-center space-x-3 mb-4">
           <div className="p-2 rounded-xl bg-[#7C5CFF]/15 border border-[#7C5CFF]/30 text-[#00E0FF]">
