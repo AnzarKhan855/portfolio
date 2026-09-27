@@ -22,7 +22,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCommandPalette }) => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
 
-      const sections = ['hero', 'about', 'dna', 'decisionlens', 'projects', 'architecture', 'pipeline', 'timeline', 'resume', 'contact'];
+      const sections = ['hero', 'what-i-build', 'about', 'dna', 'universe', 'decisionlens', 'projects', 'architecture', 'pipeline', 'timeline', 'resume', 'contact'];
       for (const section of [...sections].reverse()) {
         const el = document.getElementById(section);
         if (el) {
@@ -55,8 +55,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCommandPalette }) => {
 
   const navLinks = [
     { id: 'hero', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'dna', label: 'DNA' },
+    { id: 'what-i-build', label: 'Pillars' },
+    { id: 'universe', label: 'Universe' },
     { id: 'projects', label: 'Projects' },
     { id: 'architecture', label: 'Architecture' },
     { id: 'pipeline', label: 'Pipeline' },

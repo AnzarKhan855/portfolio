@@ -45,6 +45,9 @@ export const Footer: React.FC = () => {
             <button onClick={() => scrollTo('dna')} className="hover:text-[#00E0FF] transition-colors">
               Engineering DNA
             </button>
+            <button onClick={() => scrollTo('universe')} className="hover:text-[#00FFA3] transition-colors">
+              Tech Universe
+            </button>
             <button onClick={() => scrollTo('projects')} className="hover:text-[#00E0FF] transition-colors">
               Projects
             </button>

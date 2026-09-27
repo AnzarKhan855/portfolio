@@ -15,7 +15,7 @@ High-impact Full-Stack Developer and AI/ML Engineer pursuing B.Tech in Artificia
 Intelligence & Machine Learning at Allenhouse Institute of Technology (2023-2027). 
 Proven track record architecting and deploying end-to-end production web platforms, 
 high-throughput FastAPI and Node.js microservices, real-time MERN/Next.js applications, 
-sub-15ms AI fraud decisioning engines, and production RAG pipelines with vector databases. 
+intelligent fraud decisioning engines, and production RAG pipelines with vector databases. 
 Committed to Clean Architecture, robust type safety, test automation, and measurable business impact.
 
 EDUCATION
@@ -49,7 +49,7 @@ FLAGSHIP PRODUCTION PROJECTS
 2. RiskShield AI — Enterprise Fraud Intelligence & Autonomous Decisioning Platform
    GitHub: https://github.com/AnzarKhan855/riskshield-ai
    Live: https://riskshield-ai-kappa.vercel.app
-   - Engineered enterprise fraud decisioning platform with sub-15ms P99 decision latency across 17 REST endpoints.
+   - Engineered enterprise fraud decisioning platform featuring Clean Architecture across 17 REST endpoints.
    - Implemented Clean Architecture strictly decoupling Domain, Use Cases, Interfaces, and Infrastructure.
    - Built dual decisioning mesh evaluating visual AST compiled rules alongside calibrated XGBoost ML ensemble.
    - Integrated TreeSHAP regulatory feature attribution for adverse action transparency (PCI-DSS & SOC2 compliance).

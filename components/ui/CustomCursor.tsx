@@ -1,105 +1,138 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { motion, useSpring, useMotionValue } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
 
 export const CustomCursor: React.FC = () => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [hoverText, setHoverText] = useState('');
-  const [isClicking, setIsClicking] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-
-  const mouseX = useMotionValue(-100);
-  const mouseY = useMotionValue(-100);
-
-  const springConfig = { damping: 25, stiffness: 400, mass: 0.5 };
-  const cursorX = useSpring(mouseX, springConfig);
-  const cursorY = useSpring(mouseY, springConfig);
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
+  const labelRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    // Enable custom cursor mode on desktop
+    // Only activate custom cursor on non-touch devices
+    if (window.matchMedia('(pointer: coarse)').matches) {
+      return;
+    }
+
     document.body.classList.add('custom-cursor-active');
 
-    const handleMouseMove = (e: MouseEvent) => {
-      setIsVisible(true);
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
+    let mouseX = -100;
+    let mouseY = -100;
+    let ringX = -100;
+    let ringY = -100;
+    let isHovering = false;
+    let isClicking = false;
+    let hoverText = '';
+    let isVisible = false;
+    let rafId: number;
+    let lastLookupTime = 0;
 
-      // Check for magnetic element targeting
-      const target = e.target as HTMLElement | null;
-      const interactiveEl = target?.closest('a, button, [data-cursor], [role="button"]') as HTMLElement | null;
+    const onMouseMove = (e: MouseEvent) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (!isVisible) {
+        isVisible = true;
+        if (cursorRef.current) cursorRef.current.style.opacity = '1';
+        if (ringRef.current) ringRef.current.style.opacity = '1';
+      }
 
-      if (interactiveEl) {
-        setIsHovered(true);
-        const customText = interactiveEl.getAttribute('data-cursor');
-        setHoverText(customText || '');
-      } else {
-        setIsHovered(false);
-        setHoverText('');
+      // Throttle DOM element lookup to at most once per 60ms to prevent main-thread jank
+      const now = performance.now();
+      if (now - lastLookupTime > 60) {
+        lastLookupTime = now;
+        const target = e.target as HTMLElement | null;
+        const interactiveEl = target?.closest('a, button, [data-cursor], [role="button"]') as HTMLElement | null;
+
+        if (interactiveEl) {
+          isHovering = true;
+          hoverText = interactiveEl.getAttribute('data-cursor') || '';
+        } else {
+          isHovering = false;
+          hoverText = '';
+        }
       }
     };
 
-    const handleMouseDown = () => setIsClicking(true);
-    const handleMouseUp = () => setIsClicking(false);
-    const handleMouseLeave = () => setIsVisible(false);
+    const onMouseDown = () => {
+      isClicking = true;
+    };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mousedown', handleMouseDown);
-    window.addEventListener('mouseup', handleMouseUp);
-    document.addEventListener('mouseleave', handleMouseLeave);
+    const onMouseUp = () => {
+      isClicking = false;
+    };
+
+    const onMouseLeave = () => {
+      isVisible = false;
+      if (cursorRef.current) cursorRef.current.style.opacity = '0';
+      if (ringRef.current) ringRef.current.style.opacity = '0';
+    };
+
+    // 60 FPS animation loop with lerping for fluid inertia
+    const render = () => {
+      ringX += (mouseX - ringX) * 0.22;
+      ringY += (mouseY - ringY) * 0.22;
+
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%) scale(${
+          isClicking ? 1.5 : isHovering ? 0.5 : 1
+        })`;
+      }
+
+      if (ringRef.current) {
+        ringRef.current.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%) scale(${
+          isClicking ? 0.75 : isHovering ? 2.4 : 1
+        })`;
+        ringRef.current.style.borderColor = isHovering ? 'rgba(0, 224, 255, 0.9)' : 'rgba(0, 224, 255, 0.4)';
+        ringRef.current.style.backgroundColor = isHovering ? 'rgba(0, 224, 255, 0.15)' : 'transparent';
+      }
+
+      if (labelRef.current) {
+        if (hoverText) {
+          labelRef.current.textContent = hoverText;
+          labelRef.current.style.opacity = '1';
+        } else {
+          labelRef.current.style.opacity = '0';
+        }
+      }
+
+      rafId = requestAnimationFrame(render);
+    };
+
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    window.addEventListener('mousedown', onMouseDown, { passive: true });
+    window.addEventListener('mouseup', onMouseUp, { passive: true });
+    document.addEventListener('mouseleave', onMouseLeave, { passive: true });
+
+    rafId = requestAnimationFrame(render);
 
     return () => {
       document.body.classList.remove('custom-cursor-active');
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mousedown', handleMouseDown);
-      window.removeEventListener('mouseup', handleMouseUp);
-      document.removeEventListener('mouseleave', handleMouseLeave);
+      cancelAnimationFrame(rafId);
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mousedown', onMouseDown);
+      window.removeEventListener('mouseup', onMouseUp);
+      document.removeEventListener('mouseleave', onMouseLeave);
     };
-  }, [mouseX, mouseY]);
-
-  if (!isVisible) return null;
+  }, []);
 
   return (
     <div className="pointer-events-none fixed inset-0 z-50 overflow-hidden hidden lg:block">
       {/* Outer Magnetic Ring */}
-      <motion.div
-        style={{
-          x: cursorX,
-          y: cursorY,
-          translateX: '-50%',
-          translateY: '-50%',
-        }}
-        animate={{
-          scale: isClicking ? 0.8 : isHovered ? 2.5 : 1,
-          opacity: isVisible ? 1 : 0,
-        }}
-        transition={{ duration: 0.15, ease: 'easeOut' }}
-        className={`w-8 h-8 rounded-full border border-cyan-400/60 backdrop-blur-[2px] transition-colors duration-300 flex items-center justify-center ${
-          isHovered
-            ? 'bg-cyan-500/20 border-cyan-300 shadow-[0_0_25px_rgba(0,224,255,0.6)]'
-            : 'bg-transparent'
-        }`}
+      <div
+        ref={ringRef}
+        style={{ opacity: 0, willChange: 'transform' }}
+        className="w-8 h-8 rounded-full border border-cyan-400/50 backdrop-blur-[2px] transition-colors duration-150 flex items-center justify-center pointer-events-none fixed top-0 left-0"
       >
-        {hoverText && (
-          <span className="text-[8px] font-mono text-cyan-200 font-bold uppercase tracking-wider scale-75 animate-fadeIn">
-            {hoverText}
-          </span>
-        )}
-      </motion.div>
+        <span
+          ref={labelRef}
+          className="text-[7px] font-mono text-cyan-200 font-bold uppercase tracking-wider transition-opacity duration-150 pointer-events-none"
+        />
+      </div>
 
       {/* Inner Glowing Cursor Dot */}
-      <motion.div
-        style={{
-          x: cursorX,
-          y: cursorY,
-          translateX: '-50%',
-          translateY: '-50%',
-        }}
-        animate={{
-          scale: isClicking ? 1.5 : isHovered ? 0.4 : 1,
-        }}
-        transition={{ duration: 0.1, ease: 'easeOut' }}
-        className="w-2 h-2 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 shadow-[0_0_12px_rgba(0,224,255,0.9)]"
+      <div
+        ref={cursorRef}
+        style={{ opacity: 0, willChange: 'transform' }}
+        className="w-2 h-2 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 shadow-[0_0_12px_rgba(0,224,255,0.9)] pointer-events-none fixed top-0 left-0"
       />
     </div>
   );

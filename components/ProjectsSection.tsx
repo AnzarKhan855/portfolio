@@ -62,7 +62,7 @@ export const ProjectsSection: React.FC = () => {
               Engineered <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#00E0FF] to-[#7C5CFF] inline-block">Platforms & Products</span>
             </h2>
             <p className="text-slate-400 font-sans text-base max-w-2xl mt-2 leading-relaxed">
-              Every project is an architecture case study. Explore live applications, verified repositories, data pipelines, and sub-15ms AI decisioning engines.
+              Every project is an architecture case study. Explore live applications, verified repositories, data pipelines, and intelligent AI decisioning engines.
             </p>
           </div>
         </div>

@@ -35,7 +35,7 @@ Bachelor of Technology (B.Tech) in Artificial Intelligence & Machine Learning (2
 FLAGSHIP PRODUCTION PLATFORMS:
 1. DecisionLens AI — Enterprise Decision Intelligence Platform
    https://github.com/AnzarKhan855/decisionlens-enterprise-analytics
-2. RiskShield AI — Enterprise Fraud Intelligence & Decisioning Mesh (P99 < 15ms)
+2. RiskShield AI — Enterprise Fraud Intelligence & Decisioning Mesh (Clean Architecture)
    https://github.com/AnzarKhan855/riskshield-ai
 3. CampusAgent AI — Agentic AI Student Productivity Platform (Qdrant Vector DB)
    https://github.com/AnzarKhan855/campusagent-ai
@@ -240,7 +240,7 @@ PostgreSQL, MongoDB Atlas, Qdrant Vector DB, XGBoost, Scikit-Learn, TreeSHAP, Do
                         Executive Summary:
                       </div>
                       <p className="text-xs font-sans text-slate-300 leading-relaxed">
-                        Full-Stack Developer and AI/ML Engineer pursuing B.Tech at Allenhouse Institute of Technology. Experienced in architecting production web platforms, high-throughput FastAPI microservices, sub-15ms AI fraud decisioning engines, and vector RAG pipelines deployed live.
+                        Full-Stack Developer and AI/ML Engineer pursuing B.Tech at Allenhouse Institute of Technology. Experienced in architecting production web platforms, high-throughput FastAPI microservices, intelligent AI fraud decisioning engines, and vector RAG pipelines deployed live.
                       </p>
                     </div>
 
@@ -325,7 +325,7 @@ PostgreSQL, MongoDB Atlas, Qdrant Vector DB, XGBoost, Scikit-Learn, TreeSHAP, Do
                       <div className="p-4 rounded-2xl bg-[#090c18] border border-slate-800 space-y-2">
                         <div className="flex items-center justify-between">
                           <span className="font-mono text-sm font-bold text-white">RiskShield AI</span>
-                          <span className="text-[10px] font-mono text-emerald-400">P99 &lt; 15ms</span>
+                          <span className="text-[10px] font-mono text-emerald-400">Clean Architecture</span>
                         </div>
                         <p className="text-xs text-slate-300 font-sans leading-relaxed">
                           Enterprise fraud decisioning mesh implementing Clean Architecture, AST rule compiler, calibrated XGBoost ensemble, and TreeSHAP regulatory explainability.

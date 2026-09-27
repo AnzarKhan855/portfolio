@@ -117,7 +117,7 @@ export const ArchitectureSection: React.FC = () => {
 
             {/* Central Core & Orbiting Project Nodes Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {PROJECTS.filter((p) => p.id !== 'vision-ai-research').map((proj, idx) => {
+              {PROJECTS.map((proj, idx) => {
                 const color = proj.accentColor || '#00E0FF';
                 return (
                   <div

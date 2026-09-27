@@ -10,8 +10,8 @@ import dynamic from 'next/dynamic';
 import { PERSONAL_INFO } from '@/lib/portfolioData';
 import { audioEngine } from '@/lib/audio';
 
-const HeroArchitectureCanvas = dynamic(
-  () => import('@/components/3d/HeroArchitectureCanvas').then((mod) => mod.HeroArchitectureCanvas),
+const HeroCoreCanvas = dynamic(
+  () => import('@/components/3d/HeroCoreCanvas').then((mod) => mod.HeroCoreCanvas),
   { ssr: false }
 );
 
@@ -24,8 +24,8 @@ export const Hero: React.FC = () => {
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden bg-[#05060a]">
-      {/* 3D R3F Software Architecture Centerpiece (Frontend -> Gateway -> Backend -> AI -> DB -> Analytics -> Cloud) */}
-      <HeroArchitectureCanvas />
+      {/* High-Performance 3D Engineering Core (Non-colliding, 60 FPS) */}
+      <HeroCoreCanvas />
 
       {/* Cyber Grid Scrim */}
       <div className="absolute inset-0 bg-grid-cyber opacity-35 pointer-events-none" />
@@ -124,15 +124,15 @@ export const Hero: React.FC = () => {
             <span>CONTACT ME</span>
           </button>
 
-          {/* Architecture CTA */}
+          {/* Technology Universe CTA */}
           <button
-            onClick={() => scrollTo('architecture')}
+            onClick={() => scrollTo('universe')}
             onMouseEnter={() => audioEngine.playHover()}
-            data-cursor="SYSTEM"
+            data-cursor="UNIVERSE"
             className="px-5 py-3.5 rounded-full font-mono text-xs font-semibold text-slate-300 bg-[#090c18]/90 hover:bg-[#0f1424] border border-slate-800 hover:border-[#00FFA3]/60 backdrop-blur-xl transition-all duration-300 flex items-center space-x-2"
           >
             <Layers className="w-3.5 h-3.5 text-[#00FFA3]" />
-            <span>EXPLORE ARCHITECTURE</span>
+            <span>EXPLORE TECH UNIVERSE</span>
           </button>
 
           {/* Resume CTA */}

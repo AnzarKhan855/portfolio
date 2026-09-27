@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { Project } from '@/lib/portfolioData';
 import { audioEngine } from '@/lib/audio';
+import { ProjectArchitectureDiagram } from '@/components/ProjectArchitectureDiagram';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -144,23 +145,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         </div>
 
         {/* Step-by-Step Architecture Pipeline */}
-        {project.architectureFlow && project.architectureFlow.length > 0 && (
-          <div className="mb-8 p-6 rounded-2xl bg-[#05060a] border border-slate-800">
-            <h4 className="text-xs font-mono text-[#00E0FF] uppercase mb-4 flex items-center space-x-2">
-              <Layers className="w-4 h-4" />
-              <span>Interactive Architecture Data Pipeline</span>
-            </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
-              {project.architectureFlow.map((flow, idx) => (
-                <div key={idx} className="p-3 rounded-xl bg-[#090c18] border border-slate-800/90 text-left">
-                  <div className="text-[10px] font-mono text-slate-500 mb-1">STAGE {flow.step}</div>
-                  <div className="text-xs font-mono font-bold text-white">{flow.role}</div>
-                  <div className="text-[10px] font-mono text-[#00E0FF] mt-1">{flow.tech}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+        <div className="mb-8 p-6 rounded-2xl bg-[#05060a] border border-slate-800">
+          <ProjectArchitectureDiagram projectId={project.id} accentColor={project.accentColor || '#00E0FF'} />
+        </div>
 
         {/* Key Features List */}
         <div className="mb-8">

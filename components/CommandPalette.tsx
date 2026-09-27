@@ -93,6 +93,22 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
               </button>
 
               <button
+                onClick={() => navigateTo('universe')}
+                className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-[#00FFA3]/10 border border-slate-800 hover:border-[#00FFA3]/40 text-left transition-all"
+              >
+                <Cpu className="w-4 h-4 text-[#00FFA3]" />
+                <span className="text-slate-200">Tech Universe</span>
+              </button>
+
+              <button
+                onClick={() => navigateTo('what-i-build')}
+                className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-[#00E0FF]/10 border border-slate-800 hover:border-[#00E0FF]/40 text-left transition-all"
+              >
+                <Cpu className="w-4 h-4 text-[#00E0FF]" />
+                <span className="text-slate-200">What I Build</span>
+              </button>
+
+              <button
                 onClick={() => navigateTo('architecture')}
                 className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-[#7C5CFF]/10 border border-slate-800 hover:border-[#7C5CFF]/40 text-left transition-all"
               >

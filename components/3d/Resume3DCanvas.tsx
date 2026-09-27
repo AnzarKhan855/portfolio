@@ -211,6 +211,9 @@ export const Resume3DCanvas: React.FC<{
   const [isReducedMotion, setIsReducedMotion] = useState(false);
   const [webGlSupported, setWebGlSupported] = useState(true);
 
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setIsReducedMotion(mediaQuery.matches);
@@ -222,13 +225,26 @@ export const Resume3DCanvas: React.FC<{
     } catch {
       setWebGlSupported(false);
     }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.05 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
   }, []);
 
   if (isReducedMotion || !webGlSupported) {
     return (
       <div className="w-full h-[520px] rounded-3xl bg-[#090c18] border border-slate-800 flex items-center justify-center p-8 text-center font-mono text-xs text-slate-400">
         <div>
-          <div className="text-[#00E0FF] font-bold mb-2">3D DOCUMENT ENGINE READY</div>
+          <div className="text-[#00E0FF] font-bold mb-2">DOCUMENT VIEWER READY</div>
           <div>Explore the verified document sections directly in the interactive panel.</div>
         </div>
       </div>
@@ -236,31 +252,34 @@ export const Resume3DCanvas: React.FC<{
   }
 
   return (
-    <div className="w-full h-[540px] relative rounded-3xl overflow-hidden glass-panel-active border border-[#7C5CFF]/30">
-      <Canvas
-        camera={{ position: [0, 0, 4.6], fov: 48 }}
-        gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
-      >
-        <ambientLight intensity={0.7} />
-        <directionalLight position={[5, 10, 5]} intensity={1.5} color="#00E0FF" />
-        <pointLight position={[-5, -5, 5]} intensity={1.0} color="#7C5CFF" />
+    <div ref={containerRef} className="w-full h-[540px] relative rounded-3xl overflow-hidden glass-panel-active border border-[#7C5CFF]/30">
+      {isVisible && (
+        <Canvas
+          dpr={[1, 1.5]}
+          camera={{ position: [0, 0, 4.6], fov: 48 }}
+          gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
+        >
+          <ambientLight intensity={0.7} />
+          <directionalLight position={[5, 10, 5]} intensity={1.5} color="#00E0FF" />
+          <pointLight position={[-5, -5, 5]} intensity={1.0} color="#7C5CFF" />
 
-        <Float speed={1.5} rotationIntensity={0.15} floatIntensity={0.3}>
-          <Resume3DScene
-            selectedSection={selectedSection}
-            onSectionSelect={onSectionSelect}
+          <Float speed={1.5} rotationIntensity={0.15} floatIntensity={0.3}>
+            <Resume3DScene
+              selectedSection={selectedSection}
+              onSectionSelect={onSectionSelect}
+            />
+          </Float>
+
+          <OrbitControls
+            enableZoom={false}
+            enablePan={false}
+            maxPolarAngle={Math.PI / 1.7}
+            minPolarAngle={Math.PI / 2.3}
+            maxAzimuthAngle={Math.PI / 8}
+            minAzimuthAngle={-Math.PI / 8}
           />
-        </Float>
-
-        <OrbitControls
-          enableZoom={false}
-          enablePan={false}
-          maxPolarAngle={Math.PI / 1.7}
-          minPolarAngle={Math.PI / 2.3}
-          maxAzimuthAngle={Math.PI / 8}
-          minAzimuthAngle={-Math.PI / 8}
-        />
-      </Canvas>
+        </Canvas>
+      )}
 
       <div className="absolute bottom-3 left-4 text-[10px] font-mono text-slate-500 flex items-center space-x-2 bg-[#05060a]/90 px-3 py-1.5 rounded-lg border border-slate-800">
         <span className="w-1.5 h-1.5 rounded-full bg-[#00E0FF] animate-pulse" />

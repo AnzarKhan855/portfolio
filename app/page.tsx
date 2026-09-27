@@ -5,7 +5,9 @@ import { BootSequence } from '@/components/BootSequence';
 import { Navbar } from '@/components/Navbar';
 import { CommandPalette } from '@/components/CommandPalette';
 import { Hero } from '@/components/Hero';
+import { WhatIBuild } from '@/components/WhatIBuild';
 import { AboutStory } from '@/components/AboutStory';
+import { TechnologyUniverseSection } from '@/components/TechnologyUniverseSection';
 import { DecisionLensShowcase } from '@/components/DecisionLensShowcase';
 import { ProjectsSection } from '@/components/ProjectsSection';
 import { ArchitectureSection } from '@/components/ArchitectureSection';
@@ -26,11 +28,6 @@ const BackgroundNeuralCanvas = dynamic(
   { ssr: false }
 );
 
-const GlitchPostProcessingOverlay = dynamic(
-  () => import('@/components/3d/GlitchPostProcessing').then((mod) => mod.GlitchPostProcessingOverlay),
-  { ssr: false }
-);
-
 export default function Home() {
   const [booted, setBooted] = useState(false);
   const [isCmdOpen, setIsCmdOpen] = useState(false);
@@ -38,13 +35,10 @@ export default function Home() {
   return (
     <SmoothScrollProvider>
       <main className="min-h-screen bg-[#05060a] text-slate-100 relative selection:bg-[#00E0FF] selection:text-[#05060a]">
-        {/* Custom Active Theory Magnetic Cursor */}
+        {/* Custom Active Theory Magnetic Cursor (Smooth 60 FPS) */}
         <CustomCursor />
 
-        {/* GLSL Distortion Glitch Section Wipe Overlay */}
-        <GlitchPostProcessingOverlay />
-
-        {/* 3D Living Persistent Background Canvas & Camera Corridor */}
+        {/* 3D Living Persistent Background Canvas (Optimized 50 ambient particles) */}
         <BackgroundNeuralCanvas />
 
         {/* Boot Sequence Loader */}
@@ -56,43 +50,49 @@ export default function Home() {
             <Navbar onOpenCommandPalette={() => setIsCmdOpen(true)} />
             <CommandPalette isOpen={isCmdOpen} onClose={() => setIsCmdOpen(false)} />
 
-            {/* 1. Hero with 3D Software Architecture Stack */}
+            {/* 1. Hero with Clean 3D Engineering Core */}
             <Hero />
 
             {/* Recruiter 10-Second Executive HUD */}
             <RecruiterQuickView />
 
-            {/* 2. About & Engineering DNA & Verified Metrics */}
+            {/* 2. What I Build — Core Architectural Pillars */}
+            <WhatIBuild />
+
+            {/* 3. About & Engineering DNA & Concrete Metrics */}
             <AboutStory />
 
-            {/* 3. Flagship Enterprise Centerpiece: DecisionLens AI */}
+            {/* 4. The Signature Experience: Anzar's Technology Universe (7 Revolving Galaxies) */}
+            <TechnologyUniverseSection />
+
+            {/* 5. Flagship Enterprise Centerpiece: DecisionLens AI */}
             <DecisionLensShowcase />
 
-            {/* 4. Complete Shipped Projects Showcase & Case Studies */}
+            {/* 6. Complete Shipped Projects Showcase & Case Studies (6 Verified Projects) */}
             <ProjectsSection />
 
-            {/* 5. System Architecture Mesh & 3D Tech Universe */}
+            {/* 7. System Architecture Mesh & Constellation */}
             <ArchitectureSection />
 
-            {/* 6. How I Build / 7-Stage Engineering Pipeline */}
+            {/* 8. How I Build / 7-Stage Engineering Pipeline */}
             <EngineeringPipeline />
 
-            {/* 7. GitHub Open-Source Dashboard & Commit Activity */}
+            {/* 9. GitHub Open-Source Dashboard & Commit Activity */}
             <GitHubDashboard />
 
-            {/* 8. Journey, Research & Milestones */}
+            {/* 10. Journey, Research & Milestones */}
             <ExperienceTimeline />
 
-            {/* 9. AI Lab Experiments */}
+            {/* 11. AI Lab Experiments */}
             <AILab />
 
-            {/* 10. Verified 3D Resume Architecture */}
+            {/* 12. Verified 3D Resume Architecture */}
             <ResumeSection />
 
-            {/* 11. Direct Communication Terminal (Preserved Resend API) */}
+            {/* 13. Direct Communication Terminal (Preserved Resend API) */}
             <ContactSection />
 
-            {/* 12. Premium Footer */}
+            {/* 14. Premium Footer */}
             <Footer />
           </div>
         )}

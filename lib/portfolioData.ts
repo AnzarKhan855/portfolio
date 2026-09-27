@@ -85,13 +85,15 @@ export const PERSONAL_INFO = {
   ],
 };
 
-export const VERIFIED_METRICS = [
-  { label: 'Production & OSS Systems', value: '6+', description: 'End-to-end built & deployed platforms' },
-  { label: 'REST API Endpoints', value: '30+', description: 'Secured with JWT, schemas & rate limits' },
-  { label: 'Live Cloud Deployments', value: '5+', description: 'Live on Vercel Edge & Render cloud' },
-  { label: 'AI & Data Pipelines', value: '12+', description: 'RAG, XGBoost, SHAP, and analytics engines' },
-  { label: 'P99 Decision SLA', value: '< 15ms', description: 'Benchmarked high-throughput AST decisioning' },
+export const ENGINEERING_METRICS = [
+  { label: 'Production Systems', value: '6', description: 'End-to-end built & deployed applications' },
+  { label: 'REST API Endpoints', value: '30+', description: 'Secured with JWT, schemas & validation' },
+  { label: 'Cloud Deployments', value: '5', description: 'Live on Vercel Edge & Render cloud' },
+  { label: 'Data & AI Pipelines', value: '10+', description: 'RAG, XGBoost, SHAP, and analytics engines' },
+  { label: 'Full-Stack Coverage', value: '100%', description: 'Frontend, backend, databases, AI & DevOps' },
 ];
+
+export const VERIFIED_METRICS = ENGINEERING_METRICS;
 
 export const TECHNICAL_SKILL_GROUPS = [
   {
@@ -478,9 +480,9 @@ export const PROJECTS: Project[] = [
     solution:
       'Engineered an enterprise fraud prevention platform implementing Clean Architecture, dual decisioning (AST compiled rules + XGBoost ensemble), TreeSHAP regulatory explainability, and entity graph relationship forensics.',
     description:
-      'Enterprise fraud intelligence platform featuring real-time transaction ingestion, AST policy engine, multi-model ML inference mesh (XGBoost / Random Forest), TreeSHAP regulatory explanations, and case investigation workflows with sub-15ms P99 decision latency.',
+      'Enterprise fraud intelligence platform featuring real-time transaction ingestion, AST policy engine, multi-model ML inference mesh (XGBoost / Random Forest), TreeSHAP regulatory explanations, and case investigation workflows with high-throughput execution.',
     metrics: [
-      { label: 'P99 Decision SLA', value: '< 15ms' },
+      { label: 'Architecture', value: 'Clean Hexagonal' },
       { label: 'Model ROC-AUC', value: '97.4%' },
       { label: 'REST Endpoints', value: '17 APIs' },
       { label: 'Compliance', value: 'TreeSHAP / PCI-DSS' },
@@ -513,7 +515,7 @@ export const PROJECTS: Project[] = [
       { step: '05', role: 'Operations HUD', tech: 'Next.js 14 / TypeScript' },
     ],
     keyFeatures: [
-      'Real-time transaction stream ingestion with sub-15ms P99 latency SLA',
+      'Real-time transaction stream ingestion with asynchronous validation pipeline',
       'Visual Rule Studio with AST rule compiler and zero-downtime policy simulation',
       'Multi-model ML registry featuring calibrated XGBoost and Random Forest scoring',
       'TreeSHAP regulatory feature attribution for adverse action transparency',
@@ -522,7 +524,7 @@ export const PROJECTS: Project[] = [
       'PCI-DSS v4.0 PAN masking and immutable audit log verification',
     ],
     engineeringChallenges: [
-      'Achieving sub-15ms end-to-end decision latency combining rule parsing and ML inference',
+      'Optimizing end-to-end decision throughput combining AST rule evaluation and ML inference',
       'Preventing model drift in non-stationary fraud environments with PSI tracking',
       'Strict adherence to Clean Architecture boundaries across all 17 REST endpoints',
     ],
@@ -774,53 +776,6 @@ export const PROJECTS: Project[] = [
       'Writing modular CTEs to make complex multi-step financial aggregations maintainable',
     ],
   },
-  {
-    id: 'vision-ai-research',
-    title: 'Vision AI & Multimodal OCR Engine',
-    tagline: 'Document Extraction & Multimodal Layout Parsing Pipeline',
-    status: 'Research Initiative',
-    isUnreleased: false,
-    category: 'Computer Vision Research',
-    badgeColor: '#EC4899',
-    accentColor: '#EC4899',
-    featured: false,
-    githubUrl: 'https://github.com/AnzarKhan855/campusagent-ai',
-    problem:
-      'Unstructured academic documents, handwritten lecture notes, and scanned PDFs cannot be indexed by standard text-based RAG chunkers without computer vision layout parsing.',
-    solution:
-      'Research module integrated within the CampusAgent ecosystem combining PyMuPDF, OCR tokenization, and vision LLMs to extract diagram coordinates, tabular structures, and handwritten text.',
-    description:
-      'Document understanding and OCR extraction research initiative designed to convert non-searchable scanned PDFs and handwritten diagrams into structured markdown and embeddings for downstream RAG pipelines.',
-    metrics: [
-      { label: 'Target Format', value: 'Scanned / Handwritten' },
-      { label: 'Extraction Pipeline', value: 'PyMuPDF + OCR' },
-      { label: 'Integration', value: 'CampusAgent RAG' },
-      { label: 'Status', value: 'Active R&D' },
-    ],
-    technologies: [
-      'Python',
-      'PyMuPDF',
-      'OCR Tokenization',
-      'Vision LLM APIs',
-      'Computer Vision',
-      'Vector Embeddings',
-    ],
-    architecture: [
-      'Image Extraction: High-DPI rasterization of scanned PDF pages via PyMuPDF',
-      'Layout Segmentation: Bounding box detection isolating headers, paragraphs, and tables',
-      'Multimodal Synthesis: Vision-guided text reconstruction formatted for Qdrant indexing',
-    ],
-    keyFeatures: [
-      'Rasterization and preprocessing of low-resolution scanned academic documents',
-      'Table and formula boundary detection for structured markdown conversion',
-      'Pipeline bridge feeding cleaned OCR text directly into CampusAgent Qdrant vector store',
-      'Research roadmap targeting fully autonomous multimodal diagram question answering',
-    ],
-    engineeringChallenges: [
-      'Preserving column reading order across complex multi-column academic research papers',
-      'Minimizing OCR character error rates on degraded mobile camera phone document scans',
-    ],
-  },
 ];
 
 export const AI_LAB_EXPERIMENTS = [
@@ -891,3 +846,800 @@ export const SKILL_CLUSTERS = [
     skills: ['Git & GitHub', 'Docker', 'Power BI', 'VS Code', 'Swagger UI', 'Vercel', 'Render', 'Postman'],
   },
 ];
+
+// =========================================================================
+// SECTION 05 — ANZAR'S TECHNOLOGY UNIVERSE (7 ORBITING GALAXIES)
+// =========================================================================
+
+export interface TechnologyItem {
+  name: string;
+  category: string;
+  description: string;
+  usedInProjectIds: string[];
+}
+
+export interface TechnologyGalaxy {
+  id: string;
+  name: string;
+  galaxyNumber: string;
+  centralLabel: string;
+  color: string;
+  accentColor: string;
+  description: string;
+  radius: number;
+  speed: number;
+  tiltX: number;
+  tiltZ: number;
+  technologies: TechnologyItem[];
+}
+
+export const TECHNOLOGY_GALAXIES: TechnologyGalaxy[] = [
+  {
+    id: 'frontend',
+    name: 'Frontend Galaxy',
+    galaxyNumber: '01',
+    centralLabel: 'FRONTEND',
+    color: '#00FFA3', // Neon Emerald
+    accentColor: '#10B981',
+    description: 'The interactive interface layer powering Anzar’s production applications with reactive state, responsive layouts, and 60 FPS motion.',
+    radius: 4.8,
+    speed: 0.05,
+    tiltX: 0.32,
+    tiltZ: -0.18,
+    technologies: [
+      {
+        name: 'Next.js',
+        category: 'Frontend',
+        description: 'App Router architecture, SSR/SSG, optimized server/client components, dynamic routing, and edge deployment.',
+        usedInProjectIds: ['decisionlens-ai', 'riskshield-ai', 'campusagent-ai', 'evalmentor-ai', 'resume-builder'],
+      },
+      {
+        name: 'React',
+        category: 'Frontend',
+        description: 'Component-driven state architecture, concurrent features, custom hooks, and high-performance DOM reconciliation.',
+        usedInProjectIds: ['decisionlens-ai', 'riskshield-ai', 'campusagent-ai', 'evalmentor-ai', 'resume-builder'],
+      },
+      {
+        name: 'TypeScript',
+        category: 'Frontend',
+        description: 'Strict static typing, interface contracts, generics, and defensive compile-time verification across full-stack applications.',
+        usedInProjectIds: ['decisionlens-ai', 'riskshield-ai', 'campusagent-ai', 'evalmentor-ai', 'resume-builder'],
+      },
+      {
+        name: 'JavaScript',
+        category: 'Frontend',
+        description: 'Modern ECMAScript (ES6+), async/await control flow, functional array pipelines, and web API integrations.',
+        usedInProjectIds: ['decisionlens-ai', 'riskshield-ai', 'campusagent-ai', 'evalmentor-ai', 'resume-builder', 'bookstore-sql'],
+      },
+      {
+        name: 'HTML',
+        category: 'Frontend',
+        description: 'Semantic document hierarchy, accessible ARIA roles, structured SEO metadata, and clean DOM markup.',
+        usedInProjectIds: ['decisionlens-ai', 'riskshield-ai', 'campusagent-ai', 'evalmentor-ai', 'resume-builder'],
+      },
+      {
+        name: 'CSS',
+        category: 'Frontend',
+        description: 'Modern CSS3 variables, flexbox & grid design patterns, hardware-accelerated transitions, and responsive viewports.',
+        usedInProjectIds: ['decisionlens-ai', 'riskshield-ai', 'campusagent-ai', 'evalmentor-ai', 'resume-builder'],
+      },
+      {
+        name: 'Tailwind CSS',
+        category: 'Frontend',
+        description: 'Utility-first styling systems, custom cyber themes, component tokens, dark-mode color palettes, and glassmorphic designs.',
+        usedInProjectIds: ['decisionlens-ai', 'riskshield-ai', 'campusagent-ai', 'evalmentor-ai', 'resume-builder'],
+      },
+      {
+        name: 'Framer Motion',
+        category: 'Frontend',
+        description: 'Declarative physics-based layout animations, gesture recognition, scroll-linked values, and smooth UI transitions.',
+        usedInProjectIds: ['decisionlens-ai', 'campusagent-ai'],
+      },
+    ],
+  },
+  {
+    id: 'backend',
+    name: 'Backend Galaxy',
+    galaxyNumber: '02',
+    centralLabel: 'BACKEND',
+    color: '#FFD700', // Deep Gold
+    accentColor: '#F59E0B',
+    description: 'High-throughput microservices, asynchronous execution loops, strictly typed API schemas, and robust authorization guards.',
+    radius: 7.2,
+    speed: -0.045,
+    tiltX: -0.26,
+    tiltZ: 0.24,
+    technologies: [
+      {
+        name: 'Node.js',
+        category: 'Backend',
+        description: 'Asynchronous event-driven JavaScript server runtime for microservices, file handling, and API middlewares.',
+        usedInProjectIds: ['evalmentor-ai', 'resume-builder'],
+      },
+      {
+        name: 'Express.js',
+        category: 'Backend',
+        description: 'Lightweight web application framework for routing HTTP endpoints, middleware pipelines, and REST architectures.',
+        usedInProjectIds: ['evalmentor-ai'],
+      },
+      {
+        name: 'Python',
+        category: 'Backend',
+        description: 'Primary computational language powering machine learning inference, statistical pipelines, and asynchronous APIs.',
+        usedInProjectIds: ['decisionlens-ai', 'riskshield-ai', 'campusagent-ai', 'evalmentor-ai', 'bookstore-sql'],
+      },
+      {
+        name: 'FastAPI',
+        category: 'Backend',
+        description: 'High-performance async ASGI web framework with automatic Swagger documentation, Pydantic type validation, and dependency injection.',
+        usedInProjectIds: ['decisionlens-ai', 'riskshield-ai', 'campusagent-ai', 'evalmentor-ai'],
+      },
+      {
+        name: 'REST APIs',
+        category: 'Backend',
+        description: 'Stateless RESTful endpoint design, predictable HTTP status codes, structured JSON payloads, and defensive error boundaries.',
+        usedInProjectIds: ['decisionlens-ai', 'riskshield-ai', 'campusagent-ai', 'evalmentor-ai', 'resume-builder'],
+      },
+      {
+        name: 'JWT',
+        category: 'Backend',
+        description: 'Cryptographically signed JSON Web Tokens for stateless user authentication, role-based access control, and bearer sessions.',
+        usedInProjectIds: ['campusagent-ai', 'evalmentor-ai'],
+      },
+      {
+        name: 'Pydantic',
+        category: 'Backend',
+        description: 'Strict runtime data validation, schema enforcement, and serialization for Python microservice requests and responses.',
+        usedInProjectIds: ['decisionlens-ai', 'riskshield-ai', 'campusagent-ai'],
+      },
+    ],
+  },
+  {
+    id: 'aiml',
+    name: 'AI / ML Galaxy',
+    galaxyNumber: '03',
+    centralLabel: 'AI / ML',
+    color: '#7C5CFF', // Radiant Violet
+    accentColor: '#9333EA',
+    description: 'Operational intelligence pipelines: RAG semantic search, calibrated tree ensembles, feature attribution, and fast LLM inference.',
+    radius: 9.6,
+    speed: 0.04,
+    tiltX: 0.38,
+    tiltZ: 0.30,
+    technologies: [
+      {
+        name: 'LLM APIs',
+        category: 'AI / ML',
+        description: 'Integration of modern foundation models with structured schema outputs, few-shot prompting, and deterministic temperature controls.',
+        usedInProjectIds: ['campusagent-ai', 'evalmentor-ai', 'decisionlens-ai'],
+      },
+      {
+        name: 'Groq',
+        category: 'AI / ML',
+        description: 'Ultra-low latency LPU inference engine powering real-time conversational agents and sub-second interview evaluations.',
+        usedInProjectIds: ['campusagent-ai', 'evalmentor-ai'],
+      },
+      {
+        name: 'RAG',
+        category: 'AI / ML',
+        description: 'Retrieval-Augmented Generation workflows combining semantic chunk retrieval with contextual generative grounding.',
+        usedInProjectIds: ['campusagent-ai', 'decisionlens-ai'],
+      },
+      {
+        name: 'Embeddings',
+        category: 'AI / ML',
+        description: 'Dense vector representations from sentence transformer models for similarity clustering and semantic search.',
+        usedInProjectIds: ['campusagent-ai', 'decisionlens-ai'],
+      },
+      {
+        name: 'Qdrant',
+        category: 'AI / ML',
+        description: 'Production vector search engine with payload filtering, cosine distance metrics, and fast vector indexing.',
+        usedInProjectIds: ['campusagent-ai'],
+      },
+      {
+        name: 'Machine Learning',
+        category: 'AI / ML',
+        description: 'Supervised classification pipelines, dataset split strategies, precision/recall optimization, and ROC-AUC evaluation.',
+        usedInProjectIds: ['riskshield-ai'],
+      },
+      {
+        name: 'XGBoost',
+        category: 'AI / ML',
+        description: 'Extreme Gradient Boosting decision tree ensemble tuned with early stopping and probability calibration for fraud detection.',
+        usedInProjectIds: ['riskshield-ai'],
+      },
+      {
+        name: 'SHAP',
+        category: 'AI / ML',
+        description: 'Game-theoretic TreeSHAP feature attribution calculating local Shapley values for regulatory explainability and adverse action notices.',
+        usedInProjectIds: ['riskshield-ai'],
+      },
+      {
+        name: 'Hugging Face',
+        category: 'AI / ML',
+        description: 'Open-source transformer architectures, tokenizer pipelines, and pretrained sentence embeddings for local semantic inference.',
+        usedInProjectIds: ['campusagent-ai'],
+      },
+      {
+        name: 'PyMuPDF',
+        category: 'AI / ML',
+        description: 'High-speed document parsing extracting clean text buffers, font metadata, and table bounding boxes from academic and resume PDFs.',
+        usedInProjectIds: ['campusagent-ai', 'evalmentor-ai'],
+      },
+    ],
+  },
+  {
+    id: 'database',
+    name: 'Database Galaxy',
+    galaxyNumber: '04',
+    centralLabel: 'DATABASE',
+    color: '#00E0FF', // Electric Cyan
+    accentColor: '#0284C7',
+    description: 'Heterogeneous storage solutions balancing relational integrity, document agility, in-memory caching, and vector indexing.',
+    radius: 12.0,
+    speed: -0.035,
+    tiltX: -0.34,
+    tiltZ: -0.22,
+    technologies: [
+      {
+        name: 'MongoDB',
+        category: 'Database',
+        description: 'NoSQL document database with flexible JSON schemas, compound indexes, and aggregation pipelines for agile application state.',
+        usedInProjectIds: ['campusagent-ai', 'evalmentor-ai', 'riskshield-ai'],
+      },
+      {
+        name: 'PostgreSQL',
+        category: 'Database',
+        description: 'Enterprise ACID-compliant relational database featuring strict schema constraints, foreign key cascades, and complex indexing.',
+        usedInProjectIds: ['decisionlens-ai', 'bookstore-sql'],
+      },
+      {
+        name: 'SQL',
+        category: 'Database',
+        description: 'Relational data querying using multi-table joins, subqueries, Common Table Expressions (CTEs), and analytical window ranking functions.',
+        usedInProjectIds: ['bookstore-sql', 'decisionlens-ai'],
+      },
+      {
+        name: 'Supabase',
+        category: 'Database',
+        description: 'Managed PostgreSQL platform with real-time subscriptions, Row Level Security (RLS) policies, and integrated object storage.',
+        usedInProjectIds: ['resume-builder'],
+      },
+      {
+        name: 'Qdrant',
+        category: 'Database',
+        description: 'Dedicated vector database engineered for large-scale similarity search, collection partitioning, and filtered semantic retrieval.',
+        usedInProjectIds: ['campusagent-ai'],
+      },
+      {
+        name: 'Redis',
+        category: 'Database',
+        description: 'High-speed in-memory data store utilized for fast cache lookups, session serialization, and token bucket rate limiting.',
+        usedInProjectIds: ['decisionlens-ai'],
+      },
+    ],
+  },
+  {
+    id: 'data',
+    name: 'Data & Analytics Galaxy',
+    galaxyNumber: '05',
+    centralLabel: 'DATA & ANALYTICS',
+    color: '#FF00A0', // Magenta Pink
+    accentColor: '#DB2777',
+    description: 'Transforming raw transactional records into business intelligence through statistical profiling, time-series forecasting, and interactive charts.',
+    radius: 14.4,
+    speed: 0.03,
+    tiltX: 0.28,
+    tiltZ: -0.36,
+    technologies: [
+      {
+        name: 'Python',
+        category: 'Data & Analytics',
+        description: 'Data science scripting, vector math, automated data transformations, and statistical modeling.',
+        usedInProjectIds: ['decisionlens-ai', 'riskshield-ai', 'bookstore-sql'],
+      },
+      {
+        name: 'Pandas',
+        category: 'Data & Analytics',
+        description: 'Tabular dataframe processing, missing value imputation, group-by aggregations, datetime parsing, and statistical summaries.',
+        usedInProjectIds: ['decisionlens-ai', 'riskshield-ai', 'bookstore-sql'],
+      },
+      {
+        name: 'Recharts',
+        category: 'Data & Analytics',
+        description: 'Declarative React charting library for rendering dynamic time-series curves, risk distribution bars, and revenue area graphs.',
+        usedInProjectIds: ['decisionlens-ai', 'riskshield-ai'],
+      },
+      {
+        name: 'KPI Analytics',
+        category: 'Data & Analytics',
+        description: 'Engineering essential business metrics including customer lifetime value (CLV), churn rate, moving averages, and profit margins.',
+        usedInProjectIds: ['decisionlens-ai', 'bookstore-sql'],
+      },
+      {
+        name: 'Data Visualization',
+        category: 'Data & Analytics',
+        description: 'Designing intuitive visual encodings, decision matrices, interactive legends, and color-coded risk heatmaps.',
+        usedInProjectIds: ['decisionlens-ai', 'riskshield-ai'],
+      },
+      {
+        name: 'Power BI',
+        category: 'Data & Analytics',
+        description: 'Enterprise business intelligence reporting, DAX measures, relational modeling, and interactive executive dashboards.',
+        usedInProjectIds: ['bookstore-sql', 'decisionlens-ai'],
+      },
+      {
+        name: 'Excel',
+        category: 'Data & Analytics',
+        description: 'Financial modeling, pivot tables, VLOOKUP/XLOOKUP functions, and initial exploratory data validation.',
+        usedInProjectIds: ['bookstore-sql'],
+      },
+    ],
+  },
+  {
+    id: 'cloud',
+    name: 'Cloud & Infrastructure Galaxy',
+    galaxyNumber: '06',
+    centralLabel: 'CLOUD & INFRASTRUCTURE',
+    color: '#38BDF8', // Sky Blue
+    accentColor: '#0EA5E9',
+    description: 'Reliable deployment environments, containerized microservice architectures, and global edge network delivery.',
+    radius: 16.8,
+    speed: -0.025,
+    tiltX: -0.22,
+    tiltZ: 0.38,
+    technologies: [
+      {
+        name: 'Docker',
+        category: 'Cloud & DevOps',
+        description: 'Multi-stage container builds, reproducible production images, environment variable isolation, and lightweight local testing.',
+        usedInProjectIds: ['decisionlens-ai', 'riskshield-ai', 'campusagent-ai'],
+      },
+      {
+        name: 'Vercel',
+        category: 'Cloud & DevOps',
+        description: 'Automated CI/CD git-linked deployments, global edge CDN caching, and serverless compute for Next.js web applications.',
+        usedInProjectIds: ['decisionlens-ai', 'riskshield-ai', 'campusagent-ai', 'evalmentor-ai', 'resume-builder'],
+      },
+      {
+        name: 'Render',
+        category: 'Cloud & DevOps',
+        description: 'Cloud hosting platform for containerized Python FastAPI web services, automated SSL certificates, and persistent disks.',
+        usedInProjectIds: ['decisionlens-ai', 'campusagent-ai'],
+      },
+      {
+        name: 'Git',
+        category: 'Cloud & DevOps',
+        description: 'Distributed version control, atomic commits, feature branches, rebasing, and merge conflict resolution.',
+        usedInProjectIds: ['decisionlens-ai', 'riskshield-ai', 'campusagent-ai', 'evalmentor-ai', 'resume-builder', 'bookstore-sql'],
+      },
+      {
+        name: 'GitHub',
+        category: 'Cloud & DevOps',
+        description: 'Cloud repository hosting, issue tracking, open-source portfolio maintenance, and automated webhook triggers.',
+        usedInProjectIds: ['decisionlens-ai', 'riskshield-ai', 'campusagent-ai', 'evalmentor-ai', 'resume-builder', 'bookstore-sql'],
+      },
+      {
+        name: 'REST deployment',
+        category: 'Cloud & DevOps',
+        description: 'Stateless API cloud hosting with CORS middleware configuration, environment secrecy, and health probe endpoints.',
+        usedInProjectIds: ['decisionlens-ai', 'campusagent-ai', 'riskshield-ai'],
+      },
+    ],
+  },
+  {
+    id: 'tools',
+    name: 'Engineering Tools Galaxy',
+    galaxyNumber: '07',
+    centralLabel: 'ENGINEERING TOOLS',
+    color: '#F43F5E', // Rose Coral
+    accentColor: '#E11D48',
+    description: 'Developer tooling, API debugging environments, code formatting standards, and container runtimes ensuring velocity.',
+    radius: 19.2,
+    speed: 0.02,
+    tiltX: 0.35,
+    tiltZ: -0.28,
+    technologies: [
+      {
+        name: 'Git',
+        category: 'Engineering Tools',
+        description: 'Command-line version control managing repository history, branch staging, and collaborative code merges.',
+        usedInProjectIds: ['decisionlens-ai', 'riskshield-ai', 'campusagent-ai', 'evalmentor-ai', 'resume-builder', 'bookstore-sql'],
+      },
+      {
+        name: 'GitHub',
+        category: 'Engineering Tools',
+        description: 'Remote collaboration platform with release tags, repository documentation, and open-source project showcases.',
+        usedInProjectIds: ['decisionlens-ai', 'riskshield-ai', 'campusagent-ai', 'evalmentor-ai', 'resume-builder', 'bookstore-sql'],
+      },
+      {
+        name: 'VS Code',
+        category: 'Engineering Tools',
+        description: 'Primary IDE customized with TypeScript linters, Python virtual environment debuggers, and Docker extension tooling.',
+        usedInProjectIds: ['decisionlens-ai', 'riskshield-ai', 'campusagent-ai', 'evalmentor-ai', 'resume-builder', 'bookstore-sql'],
+      },
+      {
+        name: 'Postman',
+        category: 'Engineering Tools',
+        description: 'REST API payload debugging, JWT authentication headers testing, route verification, and environment variable collections.',
+        usedInProjectIds: ['decisionlens-ai', 'riskshield-ai', 'campusagent-ai', 'evalmentor-ai', 'resume-builder'],
+      },
+      {
+        name: 'Docker',
+        category: 'Engineering Tools',
+        description: 'Local container daemon creating architecture parity between development workstations and production cloud servers.',
+        usedInProjectIds: ['decisionlens-ai', 'riskshield-ai', 'campusagent-ai'],
+      },
+    ],
+  },
+];
+
+// =========================================================================
+// SECTION 20 TO 28 — UNDERSTANDABLE 3D/SVG PROJECT ARCHITECTURAL FLOWS
+// =========================================================================
+
+export interface ProjectArchitectureStep {
+  id: string;
+  stepNumber: number;
+  label: string;
+  subLabel: string;
+  tech: string;
+  description: string;
+}
+
+export interface ProjectArchitectureFlow {
+  projectId: string;
+  projectTitle: string;
+  headline: string;
+  steps: ProjectArchitectureStep[];
+}
+
+export const PROJECT_ARCHITECTURE_FLOWS: Record<string, ProjectArchitectureFlow> = {
+  'decisionlens-ai': {
+    projectId: 'decisionlens-ai',
+    projectTitle: 'DecisionLens AI',
+    headline: 'Enterprise Decision Intelligence & Statistical Ingestion Pipeline',
+    steps: [
+      {
+        id: 'dl-step-1',
+        stepNumber: 1,
+        label: 'DATA SOURCE',
+        subLabel: 'Raw Ingestion',
+        tech: 'CSV / JSON / API streams',
+        description: 'Accepts raw tabular files and business datasets up to 1M+ rows via drag-and-drop or HTTP multipart upload.',
+      },
+      {
+        id: 'dl-step-2',
+        stepNumber: 2,
+        label: 'INGESTION',
+        subLabel: 'Validation Layer',
+        tech: 'FastAPI + Pydantic',
+        description: 'Parses incoming data streams, verifies encoding, validates schemas, and checks null tolerances.',
+      },
+      {
+        id: 'dl-step-3',
+        stepNumber: 3,
+        label: 'PROCESSING',
+        subLabel: 'Profiling Engine',
+        tech: 'Python + Pandas',
+        description: 'Automates column type inference, statistical summaries, missing value imputation, and anomaly detection.',
+      },
+      {
+        id: 'dl-step-4',
+        stepNumber: 4,
+        label: 'ANALYTICS ENGINE',
+        subLabel: 'Time-Series Models',
+        tech: 'Pandas + NumPy',
+        description: 'Executes trend decomposition, seasonal regression, rolling window statistics, and margin calculations.',
+      },
+      {
+        id: 'dl-step-5',
+        stepNumber: 5,
+        label: 'KPI / FORECASTING',
+        subLabel: 'Metric Synthesis',
+        tech: 'Statistical Algorithms',
+        description: 'Generates forward-looking revenue forecasts, identifies churn inflection points, and computes performance KPIs.',
+      },
+      {
+        id: 'dl-step-6',
+        stepNumber: 6,
+        label: 'INSIGHTS',
+        subLabel: 'RAG Copilot',
+        tech: 'FastAPI + LLM RAG',
+        description: 'Translates natural language questions like "What drove Q3 margin decline?" into contextual data answers.',
+      },
+      {
+        id: 'dl-step-7',
+        stepNumber: 7,
+        label: 'DASHBOARD',
+        subLabel: 'Client Presentation',
+        tech: 'Next.js 15 + Recharts',
+        description: 'Renders reactive charts, downloadable summaries, metric cards, and interactive filtering dashboards.',
+      },
+    ],
+  },
+  'riskshield-ai': {
+    projectId: 'riskshield-ai',
+    projectTitle: 'RiskShield AI',
+    headline: 'Enterprise Fraud Intelligence & Explainable Decisioning Mesh',
+    steps: [
+      {
+        id: 'rs-step-1',
+        stepNumber: 1,
+        label: 'INPUT DATA',
+        subLabel: 'Transaction Ingress',
+        tech: 'FastAPI Ingress',
+        description: 'Receives transaction payloads with user telemetry, device fingerprints, transaction amounts, and velocity indicators.',
+      },
+      {
+        id: 'rs-step-2',
+        stepNumber: 2,
+        label: 'FEATURE ENGINEERING',
+        subLabel: 'Attribute Extraction',
+        tech: 'AST Rule Compiler + Pandas',
+        description: 'Compiles business rule expressions using Abstract Syntax Trees and calculates dynamic behavioral aggregates.',
+      },
+      {
+        id: 'rs-step-3',
+        stepNumber: 3,
+        label: 'RISK MODEL',
+        subLabel: 'Model Inference',
+        tech: 'Calibrated XGBoost Ensemble',
+        description: 'Passes normalized feature vectors into gradient-boosted decision trees trained on historical fraud patterns.',
+      },
+      {
+        id: 'rs-step-4',
+        stepNumber: 4,
+        label: 'RISK SCORE',
+        subLabel: 'Probability Calculation',
+        tech: 'Isotonic Regression',
+        description: 'Outputs a well-calibrated continuous risk score between 0.00 and 1.00 representing fraud likelihood.',
+      },
+      {
+        id: 'rs-step-5',
+        stepNumber: 5,
+        label: 'EXPLAINABILITY',
+        subLabel: 'Regulatory Attribution',
+        tech: 'TreeSHAP Game Theory',
+        description: 'Calculates exact local Shapley contribution values for each feature to generate regulatory adverse action notices.',
+      },
+      {
+        id: 'rs-step-6',
+        stepNumber: 6,
+        label: 'DECISION',
+        subLabel: 'Automated Verdict',
+        tech: 'Clean Architecture Gate',
+        description: 'Executes automated policy: Approve (<0.35), Step-Up MFA Challenge (0.35–0.75), or Decline (>0.75).',
+      },
+    ],
+  },
+  'campusagent-ai': {
+    projectId: 'campusagent-ai',
+    projectTitle: 'CampusAgent AI',
+    headline: 'Agentic Academic Productivity & Vector RAG Platform',
+    steps: [
+      {
+        id: 'ca-step-1',
+        stepNumber: 1,
+        label: 'USER',
+        subLabel: 'Student Interaction',
+        tech: 'Browser / Mobile Client',
+        description: 'Student uploads lecture slides, syllabi, or asks questions about course concepts and assignment schedules.',
+      },
+      {
+        id: 'ca-step-2',
+        stepNumber: 2,
+        label: 'NEXT.JS',
+        subLabel: 'App Router Client',
+        tech: 'Next.js 15 + TypeScript',
+        description: 'Manages optimistic UI state, document upload streaming, conversation history, and practice test generation.',
+      },
+      {
+        id: 'ca-step-3',
+        stepNumber: 3,
+        label: 'FASTAPI',
+        subLabel: 'API Microservice',
+        tech: 'FastAPI + Python 3.12',
+        description: 'Routes 15+ secured endpoints, handles JWT auth tokens, validates requests, and dispatches background tasks.',
+      },
+      {
+        id: 'ca-step-4',
+        stepNumber: 4,
+        label: 'AI AGENT',
+        subLabel: 'Autonomous Orchestrator',
+        tech: 'RAG, Memory & Groq LPU',
+        description: 'Orchestrates document chunking (PyMuPDF), retrieves relevant context, manages conversational memory, and executes tools.',
+      },
+      {
+        id: 'ca-step-5',
+        stepNumber: 5,
+        label: 'VECTOR DATABASE',
+        subLabel: 'Semantic Search Store',
+        tech: 'Qdrant Vector DB',
+        description: 'Indexes dense embeddings with cosine similarity distance, returning the top-k most relevant academic passages.',
+      },
+      {
+        id: 'ca-step-6',
+        stepNumber: 6,
+        label: 'DATABASE',
+        subLabel: 'Persistent Storage',
+        tech: 'MongoDB Atlas',
+        description: 'Persists user profiles, subject taxonomies, quiz histories, generated summaries, and analytics logs.',
+      },
+    ],
+  },
+  'evalmentor-ai': {
+    projectId: 'evalmentor-ai',
+    projectTitle: 'EvalMentor AI',
+    headline: 'AI Interview Agent & Structured Candidate Assessment Platform',
+    steps: [
+      {
+        id: 'em-step-1',
+        stepNumber: 1,
+        label: 'RESUME',
+        subLabel: 'Candidate Input',
+        tech: 'PDF Document Upload',
+        description: 'Candidate submits their technical resume and selects their target engineering role (Frontend, Backend, AI/ML).',
+      },
+      {
+        id: 'em-step-2',
+        stepNumber: 2,
+        label: 'PARSER',
+        subLabel: 'Text Extraction',
+        tech: 'PyMuPDF Engine',
+        description: 'Extracts career history, education milestones, project descriptions, and technical skill keywords.',
+      },
+      {
+        id: 'em-step-3',
+        stepNumber: 3,
+        label: 'PROFILE',
+        subLabel: 'Competency Graph',
+        tech: 'Structured JSON AST',
+        description: 'Constructs an internal competency model mapping the candidate’s stated proficiencies and technical gaps.',
+      },
+      {
+        id: 'em-step-4',
+        stepNumber: 4,
+        label: 'QUESTION GENERATOR',
+        subLabel: 'Dynamic Scenarios',
+        tech: 'FastAPI + LLM Engine',
+        description: 'Generates tailored situational and algorithmic interview questions based on the candidate’s specific resume claims.',
+      },
+      {
+        id: 'em-step-5',
+        stepNumber: 5,
+        label: 'USER ANSWER',
+        subLabel: 'Response Ingestion',
+        tech: 'Interactive UI Console',
+        description: 'Candidate provides typed technical responses to real-world system design and coding challenges.',
+      },
+      {
+        id: 'em-step-6',
+        stepNumber: 6,
+        label: 'AI EVALUATOR',
+        subLabel: 'Rubric Assessment',
+        tech: 'Groq LLM Acceleration',
+        description: 'Evaluates the candidate’s technical depth, problem-solving structure, and communication clarity against hiring rubrics.',
+      },
+      {
+        id: 'em-step-7',
+        stepNumber: 7,
+        label: 'FEEDBACK',
+        subLabel: 'Actionable Report',
+        tech: 'MongoDB + Next.js Report',
+        description: 'Delivers a comprehensive evaluation card detailing strengths, weaknesses, recommended improvements, and hiring score.',
+      },
+    ],
+  },
+  'resume-builder': {
+    projectId: 'resume-builder',
+    projectTitle: 'AI Resume Builder',
+    headline: 'ATS-Friendly SaaS & Deterministic Document Architecture',
+    steps: [
+      {
+        id: 'rb-step-1',
+        stepNumber: 1,
+        label: 'RESUME INPUT',
+        subLabel: 'User Career Data',
+        tech: 'Next.js Dynamic Form',
+        description: 'User enters employment history, technical competencies, education, and project achievements.',
+      },
+      {
+        id: 'rb-step-2',
+        stepNumber: 2,
+        label: 'DOCUMENT PARSER',
+        subLabel: 'Syntax Analyzer',
+        tech: 'Parsing Engine',
+        description: 'Classifies raw input into standardized resume entity tokens, cleaning formatting artifacts.',
+      },
+      {
+        id: 'rb-step-3',
+        stepNumber: 3,
+        label: 'SECTION EXTRACTION',
+        subLabel: 'Semantic Grouping',
+        tech: 'State Reducer Matrix',
+        description: 'Decomposes profile into modular sections: Summary, Experience, Projects, Skills, and Education.',
+      },
+      {
+        id: 'rb-step-4',
+        stepNumber: 4,
+        label: 'STRUCTURED PROFILE',
+        subLabel: 'Standard Schema',
+        tech: 'JSON Resume Standard',
+        description: 'Maintains an immutable JSON AST representation of the resume for deterministic styling and export.',
+      },
+      {
+        id: 'rb-step-5',
+        stepNumber: 5,
+        label: 'ATS ENGINE',
+        subLabel: 'Compliance Scorer',
+        tech: 'ATS Rule Evaluator',
+        description: 'Tests document against industry Applicant Tracking System heuristics, scoring 98/100 parser compatibility.',
+      },
+      {
+        id: 'rb-step-6',
+        stepNumber: 6,
+        label: 'TEMPLATE',
+        subLabel: 'Visual Typesetting',
+        tech: 'Tailwind Print CSS',
+        description: 'Applies clean, recruiter-approved typography, standard margins, and high-contrast typographic hierarchy.',
+      },
+      {
+        id: 'rb-step-7',
+        stepNumber: 7,
+        label: 'PDF',
+        subLabel: 'Export Generation',
+        tech: 'Browser Print Driver',
+        description: 'Generates a clean vector PDF download ready for recruiter submission and automated job board parsing.',
+      },
+    ],
+  },
+  'bookstore-sql': {
+    projectId: 'bookstore-sql',
+    projectTitle: 'BookStore SQL Analytics',
+    headline: '3NF Relational Database & Revenue Intelligence Engine',
+    steps: [
+      {
+        id: 'bs-step-1',
+        stepNumber: 1,
+        label: 'DATABASE',
+        subLabel: 'Relational Core',
+        tech: 'PostgreSQL Relational DB',
+        description: 'Normalized 3NF relational schema storing customer profiles, author catalogs, book inventory, and sales orders.',
+      },
+      {
+        id: 'bs-step-2',
+        stepNumber: 2,
+        label: 'SQL QUERIES',
+        subLabel: 'Complex Aggregations',
+        tech: 'SQL + CTEs + Window Functions',
+        description: 'Executes 20+ analytical queries using DENSE_RANK(), PARTITION BY, and multi-table inner/outer joins.',
+      },
+      {
+        id: 'bs-step-3',
+        stepNumber: 3,
+        label: 'DATA ANALYSIS',
+        subLabel: 'Statistical Profiling',
+        tech: 'Python + Pandas',
+        description: 'Aggregates transactional histories to identify genre revenue distributions and high-volume purchasing cohorts.',
+      },
+      {
+        id: 'bs-step-4',
+        stepNumber: 4,
+        label: 'REVENUE / METRICS',
+        subLabel: 'Financial KPI Extraction',
+        tech: 'Financial Calculations',
+        description: 'Calculates Customer Lifetime Value (CLV), order repeat rates, seasonal sales peaks, and inventory velocity.',
+      },
+      {
+        id: 'bs-step-5',
+        stepNumber: 5,
+        label: 'INSIGHTS',
+        subLabel: 'Business Intelligence',
+        tech: 'Executive Reports + Power BI',
+        description: 'Delivers actionable strategic recommendations on inventory restocking, author promotions, and customer retention.',
+      },
+    ],
+  },
+};
