@@ -1,8 +1,11 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Search, Terminal, Sparkles, FileText, FolderGit2, Cpu, Mail, ExternalLink, X } from 'lucide-react';
-import { PROJECTS, SKILL_CLUSTERS, PERSONAL_INFO } from '@/lib/portfolioData';
+import { 
+  Search, Terminal, Sparkles, FileText, FolderGit2, Cpu, 
+  Mail, ExternalLink, X, Network, GitBranch, Layers, ShieldCheck 
+} from 'lucide-react';
+import { PROJECTS, PERSONAL_INFO } from '@/lib/portfolioData';
 import { audioEngine } from '@/lib/audio';
 
 interface CommandPaletteProps {
@@ -18,10 +21,6 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
       if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
         e.preventDefault();
         if (isOpen) onClose();
-        else {
-          audioEngine.playClick();
-          // Trigger parent open
-        }
       }
       if (e.key === 'Escape' && isOpen) {
         onClose();
@@ -45,18 +44,22 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
 
   const filteredProjects = PROJECTS.filter((p) =>
     p.title.toLowerCase().includes(query.toLowerCase()) ||
+    p.category.toLowerCase().includes(query.toLowerCase()) ||
     p.technologies.some((t) => t.toLowerCase().includes(query.toLowerCase()))
   );
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 bg-slate-950/80 backdrop-blur-md animate-fadeIn">
+    <div 
+      className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 bg-black/80 backdrop-blur-md animate-fadeIn"
+      onClick={onClose}
+    >
       <div 
-        className="w-full max-w-2xl bg-slate-900 border border-cyan-500/30 rounded-2xl shadow-2xl overflow-hidden shadow-cyan-500/10"
+        className="w-full max-w-2xl bg-[#090c18] border border-[#00E0FF]/40 rounded-2xl shadow-2xl overflow-hidden shadow-[#00E0FF]/15"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Header */}
-        <div className="flex items-center px-4 py-3 border-b border-slate-800 bg-slate-950/50">
-          <Search className="w-5 h-5 text-cyan-400 mr-3" />
+        <div className="flex items-center px-4 py-3.5 border-b border-slate-800 bg-[#05060a]/90">
+          <Search className="w-5 h-5 text-[#00E0FF] mr-3 shrink-0" />
           <input
             type="text"
             value={query}
@@ -74,97 +77,120 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
         </div>
 
         {/* Results Body */}
-        <div className="max-h-[60vh] overflow-y-auto p-4 space-y-4">
-          {/* Quick Actions */}
+        <div className="max-h-[60vh] overflow-y-auto p-4 space-y-4 font-mono text-xs">
+          {/* Quick Navigation Commands */}
           <div>
-            <h4 className="text-[11px] font-mono text-cyan-400 tracking-wider uppercase mb-2">Navigation Commands</h4>
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                onClick={() => navigateTo('decisionlens')}
-                className="flex items-center space-x-2 p-2.5 rounded-lg bg-slate-800/40 hover:bg-cyan-500/10 border border-slate-800 hover:border-cyan-400/40 text-left transition-all group"
-              >
-                <Sparkles className="w-4 h-4 text-cyan-400 group-hover:scale-110 transition-transform" />
-                <span className="text-xs text-slate-200 font-mono">DecisionLens AI (Flagship)</span>
-              </button>
-
+            <h4 className="text-[11px] text-[#00E0FF] tracking-wider uppercase mb-2 font-bold">
+              Navigation Commands
+            </h4>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               <button
                 onClick={() => navigateTo('projects')}
-                className="flex items-center space-x-2 p-2.5 rounded-lg bg-slate-800/40 hover:bg-purple-500/10 border border-slate-800 hover:border-purple-400/40 text-left transition-all group"
+                className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-[#00E0FF]/10 border border-slate-800 hover:border-[#00E0FF]/40 text-left transition-all"
               >
-                <FolderGit2 className="w-4 h-4 text-purple-400 group-hover:scale-110 transition-transform" />
-                <span className="text-xs text-slate-200 font-mono">SaaS Projects</span>
+                <FolderGit2 className="w-4 h-4 text-[#00E0FF]" />
+                <span className="text-slate-200">View Projects</span>
               </button>
 
               <button
-                onClick={() => navigateTo('skills')}
-                className="flex items-center space-x-2 p-2.5 rounded-lg bg-slate-800/40 hover:bg-emerald-500/10 border border-slate-800 hover:border-emerald-400/40 text-left transition-all group"
+                onClick={() => navigateTo('architecture')}
+                className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-[#7C5CFF]/10 border border-slate-800 hover:border-[#7C5CFF]/40 text-left transition-all"
               >
-                <Cpu className="w-4 h-4 text-emerald-400 group-hover:scale-110 transition-transform" />
-                <span className="text-xs text-slate-200 font-mono">Tech Universe</span>
+                <Network className="w-4 h-4 text-[#7C5CFF]" />
+                <span className="text-slate-200">Architecture</span>
               </button>
 
               <button
-                onClick={() => navigateTo('ailab')}
-                className="flex items-center space-x-2 p-2.5 rounded-lg bg-slate-800/40 hover:bg-cyan-500/10 border border-slate-800 hover:border-cyan-400/40 text-left transition-all group"
+                onClick={() => navigateTo('dna')}
+                className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-emerald-500/10 border border-slate-800 hover:border-emerald-400/40 text-left transition-all"
               >
-                <Terminal className="w-4 h-4 text-cyan-400 group-hover:scale-110 transition-transform" />
-                <span className="text-xs text-slate-200 font-mono">AI Secret R&D Lab</span>
+                <Cpu className="w-4 h-4 text-emerald-400" />
+                <span className="text-slate-200">Engineering DNA</span>
               </button>
+
+              <button
+                onClick={() => navigateTo('pipeline')}
+                className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-purple-500/10 border border-slate-800 hover:border-purple-400/40 text-left transition-all"
+              >
+                <GitBranch className="w-4 h-4 text-purple-400" />
+                <span className="text-slate-200">Build Pipeline</span>
+              </button>
+
+              <button
+                onClick={() => navigateTo('contact')}
+                className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-cyan-500/10 border border-slate-800 hover:border-cyan-400/40 text-left transition-all"
+              >
+                <Mail className="w-4 h-4 text-cyan-400" />
+                <span className="text-slate-200">Contact Terminal</span>
+              </button>
+
+              <a
+                href="/api/resume"
+                target="_blank"
+                rel="noopener noreferrer"
+                download="Anzar_Khan_Resume.txt"
+                className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-emerald-500/10 border border-slate-800 hover:border-emerald-400/40 text-left transition-all"
+              >
+                <FileText className="w-4 h-4 text-emerald-400" />
+                <span className="text-slate-200">Download Resume</span>
+              </a>
             </div>
           </div>
 
-          {/* Projects Match */}
+          {/* Filtered Projects */}
           {filteredProjects.length > 0 && (
             <div>
-              <h4 className="text-[11px] font-mono text-purple-400 tracking-wider uppercase mb-2">Projects</h4>
+              <h4 className="text-[11px] text-purple-400 tracking-wider uppercase mb-2 font-bold">
+                Projects ({filteredProjects.length})
+              </h4>
               <div className="space-y-1.5">
                 {filteredProjects.map((project) => (
                   <div
                     key={project.id}
                     onClick={() => navigateTo(project.id === 'decisionlens-ai' ? 'decisionlens' : 'projects')}
-                    className="flex items-center justify-between p-2.5 rounded-lg bg-slate-950/40 hover:bg-slate-800 border border-slate-800/80 hover:border-cyan-500/30 cursor-pointer transition-all group"
+                    className="flex items-center justify-between p-2.5 rounded-lg bg-[#05060a] hover:bg-slate-800/80 border border-slate-800/80 hover:border-[#00E0FF]/40 cursor-pointer transition-all group"
                   >
                     <div>
-                      <div className="text-xs font-semibold text-slate-200 group-hover:text-cyan-300 font-mono">
+                      <div className="text-xs font-bold text-white group-hover:text-[#00E0FF]">
                         {project.title}
                       </div>
-                      <div className="text-[11px] text-slate-400">{project.tagline}</div>
+                      <div className="text-[11px] text-slate-400 font-sans">{project.tagline}</div>
                     </div>
-                    <ExternalLink className="w-3.5 h-3.5 text-slate-500 group-hover:text-cyan-400 transition-colors" />
+                    <ExternalLink className="w-3.5 h-3.5 text-slate-500 group-hover:text-[#00E0FF] transition-colors" />
                   </div>
                 ))}
               </div>
             </div>
           )}
 
-          {/* External Links */}
-          <div>
-            <h4 className="text-[11px] font-mono text-emerald-400 tracking-wider uppercase mb-2">External Connections</h4>
-            <div className="flex space-x-3">
+          {/* Social Profiles */}
+          <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-[11px]">
+            <span className="text-slate-500">QUICK LINKS:</span>
+            <div className="flex space-x-4">
               <a
                 href={PERSONAL_INFO.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-2 text-xs text-slate-300 hover:text-cyan-400 font-mono underline"
+                className="text-slate-400 hover:text-[#00E0FF] underline"
               >
-                <span>GitHub ({PERSONAL_INFO.github})</span>
+                GitHub (@{PERSONAL_INFO.githubUsername})
               </a>
               <a
                 href={PERSONAL_INFO.linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-2 text-xs text-slate-300 hover:text-cyan-400 font-mono underline"
+                className="text-slate-400 hover:text-[#7C5CFF] underline"
               >
-                <span>LinkedIn ({PERSONAL_INFO.linkedin})</span>
+                LinkedIn
+              </a>
+              <a
+                href={`mailto:${PERSONAL_INFO.email}`}
+                className="text-slate-400 hover:text-emerald-400 underline"
+              >
+                Email
               </a>
             </div>
           </div>
-        </div>
-
-        {/* Footer info */}
-        <div className="px-4 py-2 border-t border-slate-800 bg-slate-950 text-[10px] font-mono text-slate-500 flex justify-between items-center">
-          <span>Press ESC or click outside to close</span>
-          <span>ANZAR.AI // OS v2.4</span>
         </div>
       </div>
     </div>

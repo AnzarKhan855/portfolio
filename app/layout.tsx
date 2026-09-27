@@ -1,94 +1,72 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Anzar Khan | AI Engineer & Enterprise Intelligence Builder",
-
+  title: "Anzar Khan — Full-Stack Developer | MERN | AI/ML",
   description:
-    "Interactive 3D Portfolio & AI Product Showcase of Anzar Khan — Building Enterprise AI Systems, RAG Pipelines, Agentic Workflows, and Decision Intelligence Platforms.",
-
+    "Anzar Khan is a Full-Stack Developer and AI/ML Engineer specializing in MERN applications, Next.js, FastAPI, RAG pipelines, predictive analytics platforms, and intelligent production software.",
   keywords: [
     "Anzar Khan",
-    "AI Engineer",
-    "Machine Learning Engineer",
+    "Full-Stack Developer",
+    "MERN Stack Developer",
+    "AI/ML Engineer",
+    "Next.js Developer",
+    "FastAPI Python",
     "DecisionLens AI",
+    "RiskShield AI",
     "CampusAgent AI",
     "EvalMentor AI",
-    "Resume Builder",
-    "Artificial Intelligence",
-    "LLM",
-    "RAG",
-    "Agentic AI",
-    "FastAPI",
-    "Next.js",
-    "Three.js",
-    "React",
-    "Qdrant",
-    "Python",
+    "AI Resume Builder",
+    "RAG Pipelines",
+    "Qdrant Vector DB",
+    "PostgreSQL",
+    "MongoDB",
     "TypeScript",
+    "Data Analytics",
+    "Three.js",
   ],
-
   authors: [
     {
       name: "Anzar Khan",
       url: "https://github.com/AnzarKhan855",
     },
   ],
-
   creator: "Anzar Khan",
-
-  metadataBase: new URL("https://anzarkhan.dev"),
-
+  metadataBase: new URL("https://portfolio-flame-eight-qxl2s9gocz.vercel.app"),
   alternates: {
     canonical: "/",
   },
-
   manifest: "/manifest.json",
-
   openGraph: {
-    title: "Anzar Khan | AI Engineer & Enterprise Intelligence Builder",
-
+    title: "Anzar Khan — Full-Stack Developer | MERN | AI/ML",
     description:
-      "Interactive 3D AI Product Showcase featuring Enterprise AI Systems, RAG Pipelines, Agentic AI Workflows, and Decision Intelligence Platforms.",
-
-    url: "https://anzarkhan.dev",
-
-    siteName: "Anzar Khan Portfolio",
-
+      "Full-Stack Developer and AI/ML Engineer building intelligent products at the intersection of full-stack engineering, AI, analytics, and automation.",
+    url: "https://portfolio-flame-eight-qxl2s9gocz.vercel.app",
+    siteName: "Anzar Khan — Portfolio",
     locale: "en_US",
-
     type: "website",
-
     images: [
       {
         url: "/og-preview.png",
         width: 1200,
         height: 630,
-        alt: "Anzar Khan Portfolio",
+        alt: "Anzar Khan — Full-Stack Developer | MERN | AI/ML",
       },
     ],
   },
-
   twitter: {
     card: "summary_large_image",
-
-    title: "Anzar Khan | AI Engineer",
-
+    title: "Anzar Khan — Full-Stack Developer | MERN | AI/ML",
     description:
-      "Interactive 3D Portfolio showcasing Enterprise AI Systems, RAG Pipelines, Agentic AI Workflows and Decision Intelligence.",
-
-    creator: "@AnzarKhan",
-
+      "Full-Stack Developer and AI/ML Engineer building production web applications, AI systems, analytics platforms, and intelligent software.",
+    creator: "@AnzarKhan855",
     images: ["/og-preview.png"],
   },
-
   robots: {
     index: true,
     follow: true,
-
     googleBot: {
       index: true,
       follow: true,
@@ -101,45 +79,52 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-
-  "@type": "ProfilePage",
-
-  mainEntity: {
-    "@type": "Person",
-
-    name: "Anzar Khan",
-
-    jobTitle: "AI Engineer",
-
-    description:
-      "AI Engineer specializing in Enterprise AI Systems, Retrieval-Augmented Generation (RAG), Agentic AI, LLM Applications and Decision Intelligence.",
-
-    url: "https://anzarkhan.dev",
-
-    image: "https://anzarkhan.dev/og-preview.png",
-
-    sameAs: [
-      "https://github.com/AnzarKhan855",
-      "https://www.linkedin.com/in/anzar-khan-522b712ab",
-    ],
-
-    knowsAbout: [
-      "Artificial Intelligence",
-      "Machine Learning",
-      "Deep Learning",
-      "Large Language Models",
-      "Retrieval-Augmented Generation",
-      "Agentic AI",
-      "FastAPI",
-      "Next.js",
-      "React",
-      "Three.js",
-      "Python",
-      "TypeScript",
-      "MongoDB",
-      "Qdrant",
-    ],
-  },
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://portfolio-flame-eight-qxl2s9gocz.vercel.app/#person",
+      name: "Anzar Khan",
+      jobTitle: "Full-Stack Developer & AI/ML Engineer",
+      description:
+        "Full-Stack Developer & AI/ML Engineer specializing in MERN applications, Next.js, FastAPI, RAG systems, and enterprise data analytics.",
+      url: "https://portfolio-flame-eight-qxl2s9gocz.vercel.app",
+      sameAs: [
+        "https://github.com/AnzarKhan855",
+        "https://www.linkedin.com/in/anzar-khan-522b712ab",
+      ],
+      alumniOf: {
+        "@type": "EducationalOrganization",
+        name: "Allenhouse Institute of Technology",
+      },
+      knowsAbout: [
+        "Full-Stack Development",
+        "MERN Stack",
+        "Next.js",
+        "React",
+        "TypeScript",
+        "FastAPI",
+        "Python",
+        "Artificial Intelligence",
+        "Machine Learning",
+        "Retrieval-Augmented Generation",
+        "PostgreSQL",
+        "MongoDB",
+        "Qdrant Vector Database",
+        "Data Analytics",
+        "System Architecture",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://portfolio-flame-eight-qxl2s9gocz.vercel.app/#website",
+      url: "https://portfolio-flame-eight-qxl2s9gocz.vercel.app",
+      name: "Anzar Khan — Full-Stack Developer Portfolio",
+      description: "Interactive 3D Engineering Portfolio of Anzar Khan",
+      publisher: {
+        "@id": "https://portfolio-flame-eight-qxl2s9gocz.vercel.app/#person",
+      },
+    },
+  ],
 };
 
 export default function RootLayout({

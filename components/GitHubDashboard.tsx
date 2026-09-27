@@ -57,7 +57,7 @@ export const GitHubDashboard: React.FC = () => {
             onMouseEnter={() => audioEngine.playHover()}
             className="text-xs font-mono text-cyan-400 border border-cyan-500/30 hover:border-cyan-400 px-4 py-2 rounded-xl flex items-center space-x-2 transition-all bg-slate-900"
           >
-            <span>@{PERSONAL_INFO.github}</span>
+            <span>@{PERSONAL_INFO.githubUsername}</span>
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
         </h2>
