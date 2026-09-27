@@ -722,7 +722,7 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
-    id: 'bookstore-sql-analytics',
+    id: 'bookstore-sql',
     title: 'BookStore SQL Analytics & BI',
     tagline: 'Enterprise Relational Database & Revenue Intelligence System',
     status: 'Source Available',
@@ -1643,3 +1643,6 @@ export const PROJECT_ARCHITECTURE_FLOWS: Record<string, ProjectArchitectureFlow>
     ],
   },
 };
+
+// Backwards-compatible alias
+PROJECT_ARCHITECTURE_FLOWS['bookstore-sql-analytics'] = PROJECT_ARCHITECTURE_FLOWS['bookstore-sql'];
