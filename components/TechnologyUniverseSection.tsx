@@ -107,7 +107,7 @@ export const TechnologyUniverseSection: React.FC = () => {
                 <Orbit className="w-5 h-5" />
               </div>
               <span className="text-xs font-mono text-[#00E0FF] tracking-widest uppercase">
-                {`// INTERCONNECTED UNIVERSE — 7 TECH GALAXIES + 6 PROJECT WORLDS`}
+                {`// INTERCONNECTED UNIVERSE — 7 TECH GALAXIES + 7 PROJECT WORLDS`}
               </span>
             </div>
 

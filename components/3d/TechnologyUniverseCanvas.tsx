@@ -154,19 +154,20 @@ const GalaxyOrbitalRing: React.FC<GalaxyRingProps> = ({
   );
 };
 
-// Outer Project Worlds Belt: 6 Production Systems Orbiting around the Tech Universe
+// Outer Project Worlds Belt: 7 Production Systems Orbiting around the Tech Universe
 interface ProjectWorldsBeltProps {
   selectedProjectId: string | null;
   onSelectProject: (projectId: string) => void;
 }
 
 const PROJECT_WORLDS_CONFIG = [
-  { id: 'decisionlens-ai', title: 'DECISIONLENS AI', subtitle: 'Enterprise Analytics', color: '#00E0FF', angleOffset: 0, radius: 23.0 },
-  { id: 'riskshield-ai', title: 'RISKSHIELD AI', subtitle: 'Fraud Intelligence', color: '#10B981', angleOffset: (Math.PI * 2) / 6, radius: 24.5 },
-  { id: 'campusagent-ai', title: 'CAMPUSAGENT AI', subtitle: 'Agentic RAG Student', color: '#7C5CFF', angleOffset: (Math.PI * 4) / 6, radius: 23.2 },
-  { id: 'evalmentor-ai', title: 'EVALMENTOR AI', subtitle: 'AI Interview Agent', color: '#00FFA3', angleOffset: (Math.PI * 6) / 6, radius: 24.8 },
-  { id: 'resume-builder', title: 'AI RESUME BUILDER', subtitle: 'ATS Document Engine', color: '#38BDF8', angleOffset: (Math.PI * 8) / 6, radius: 23.4 },
-  { id: 'bookstore-sql', title: 'BOOKSTORE SQL', subtitle: 'Relational BI Engine', color: '#F59E0B', angleOffset: (Math.PI * 10) / 6, radius: 24.6 },
+  { id: 'loop-ai', title: 'LOOP 2.0', subtitle: 'Customer AI Platform', color: '#00FFA3', angleOffset: 0, radius: 23.5 },
+  { id: 'decisionlens-ai', title: 'DECISIONLENS AI', subtitle: 'Enterprise Analytics', color: '#00E0FF', angleOffset: (Math.PI * 2) / 7, radius: 24.2 },
+  { id: 'riskshield-ai', title: 'RISKSHIELD AI', subtitle: 'Fraud Intelligence', color: '#10B981', angleOffset: (Math.PI * 4) / 7, radius: 23.2 },
+  { id: 'campusagent-ai', title: 'CAMPUSAGENT AI', subtitle: 'Agentic RAG Student', color: '#7C5CFF', angleOffset: (Math.PI * 6) / 7, radius: 24.6 },
+  { id: 'evalmentor-ai', title: 'EVALMENTOR AI', subtitle: 'AI Interview Agent', color: '#38BDF8', angleOffset: (Math.PI * 8) / 7, radius: 23.8 },
+  { id: 'resume-builder', title: 'AI RESUME BUILDER', subtitle: 'ATS Document Engine', color: '#EC4899', angleOffset: (Math.PI * 10) / 7, radius: 24.4 },
+  { id: 'bookstore-sql', title: 'BOOKSTORE SQL', subtitle: 'Relational BI Engine', color: '#F59E0B', angleOffset: (Math.PI * 12) / 7, radius: 23.6 },
 ];
 
 const ProjectWorldsBelt: React.FC<ProjectWorldsBeltProps> = ({
