@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     },
   ],
   creator: "Anzar Khan",
-  metadataBase: new URL("https://portfolio-flame-eight-qxl2s9gocz.vercel.app"),
+  metadataBase: new URL("https://anzarbuilds.vercel.app"),
   alternates: {
     canonical: "/",
   },
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     title: "Anzar Khan — Full-Stack Developer | MERN | AI/ML",
     description:
       "Full-Stack Developer and AI/ML Engineer building intelligent products at the intersection of full-stack engineering, AI, analytics, and automation.",
-    url: "https://portfolio-flame-eight-qxl2s9gocz.vercel.app",
+    url: "https://anzarbuilds.vercel.app",
     siteName: "Anzar Khan — Portfolio",
     locale: "en_US",
     type: "website",
@@ -84,12 +84,12 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Person",
-      "@id": "https://portfolio-flame-eight-qxl2s9gocz.vercel.app/#person",
+      "@id": "https://anzarbuilds.vercel.app/#person",
       name: "Anzar Khan",
       jobTitle: "Full-Stack Developer & AI/ML Engineer",
       description:
         "Full-Stack Developer & AI/ML Engineer specializing in MERN applications, Next.js, FastAPI, RAG systems, and enterprise data analytics.",
-      url: "https://portfolio-flame-eight-qxl2s9gocz.vercel.app",
+      url: "https://anzarbuilds.vercel.app",
       sameAs: [
         "https://github.com/AnzarKhan855",
         "https://www.linkedin.com/in/anzar-khan-522b712ab",
@@ -120,12 +120,12 @@ const jsonLd = {
     },
     {
       "@type": "WebSite",
-      "@id": "https://portfolio-flame-eight-qxl2s9gocz.vercel.app/#website",
-      url: "https://portfolio-flame-eight-qxl2s9gocz.vercel.app",
+      "@id": "https://anzarbuilds.vercel.app/#website",
+      url: "https://anzarbuilds.vercel.app",
       name: "Anzar Khan — Full-Stack Developer Portfolio",
       description: "Interactive 3D Engineering Portfolio of Anzar Khan",
       publisher: {
-        "@id": "https://portfolio-flame-eight-qxl2s9gocz.vercel.app/#person",
+        "@id": "https://anzarbuilds.vercel.app/#person",
       },
     },
   ],
