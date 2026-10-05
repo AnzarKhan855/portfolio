@@ -101,14 +101,14 @@ export const DecisionLensShowcase: React.FC = () => {
 
           {/* Deployed & Active Development Status & Production Action Buttons Bar */}
           <div className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-3">
-            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-xl bg-amber-500/10 border border-amber-400/40 text-amber-300 font-mono text-xs shadow-lg">
-              <Clock className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
-              <span>🟢 CURRENTLY UNDER ACTIVE DEVELOPMENT</span>
+            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-xl bg-[#00E0FF]/15 border border-[#00E0FF]/40 text-[#00E0FF] font-mono text-xs shadow-lg">
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#00E0FF]" />
+              <span>269 / 269 PYTESTS PASSING</span>
             </div>
 
             <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-400/50 text-emerald-300 font-mono text-xs shadow-lg">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-              <span>🚀 LIVE NOW — PRODUCTION DEPLOYMENT</span>
+              <span>🚀 LIVE PRODUCTION DEPLOYMENT</span>
             </div>
 
             <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-xl bg-[#7C5CFF]/20 border border-[#7C5CFF]/40 text-[#00E0FF] font-mono text-xs">

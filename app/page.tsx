@@ -8,6 +8,7 @@ import { Hero } from '@/components/Hero';
 import { WhatIBuild } from '@/components/WhatIBuild';
 import { AboutStory } from '@/components/AboutStory';
 import { TechnologyUniverseSection } from '@/components/TechnologyUniverseSection';
+import { LoopShowcase } from '@/components/LoopShowcase';
 import { DecisionLensShowcase } from '@/components/DecisionLensShowcase';
 import { ProjectsSection } from '@/components/ProjectsSection';
 import { ArchitectureSection } from '@/components/ArchitectureSection';
@@ -62,37 +63,40 @@ export default function Home() {
             {/* 3. About & Engineering DNA & Concrete Metrics */}
             <AboutStory />
 
-            {/* 4. The Signature Experience: Anzar's Technology Universe (7 Revolving Galaxies) */}
+            {/* 4. The Signature Experience: Anzar's Technology Universe (7 Revolving Galaxies & 7 Worlds) */}
             <TechnologyUniverseSection />
 
-            {/* 5. Flagship Enterprise Centerpiece: DecisionLens AI */}
+            {/* 5. Flagship Production Centerpiece #1: LOOP 2.0 AI Customer Feedback Intelligence */}
+            <LoopShowcase />
+
+            {/* 6. Flagship Production Centerpiece #2: DecisionLens AI Analytics Engine */}
             <DecisionLensShowcase />
 
-            {/* 6. Complete Shipped Projects Showcase & Case Studies (6 Verified Projects) */}
+            {/* 7. Complete Shipped Projects Showcase & Case Studies (7 Verified Platforms) */}
             <ProjectsSection />
 
-            {/* 7. System Architecture Mesh & Constellation */}
+            {/* 8. Interactive System Architecture Lab & Constellation */}
             <ArchitectureSection />
 
-            {/* 8. How I Build / 7-Stage Engineering Pipeline */}
+            {/* 9. How I Build / 7-Stage Engineering Pipeline */}
             <EngineeringPipeline />
 
-            {/* 9. GitHub Open-Source Dashboard & Commit Activity */}
+            {/* 10. GitHub Open-Source Dashboard & Commit Activity */}
             <GitHubDashboard />
 
-            {/* 10. Journey, Research & Milestones */}
+            {/* 11. Journey, Research & Milestones */}
             <ExperienceTimeline />
 
-            {/* 11. AI Lab Experiments */}
+            {/* 12. AI Lab Experiments */}
             <AILab />
 
-            {/* 12. Verified 3D Resume Architecture */}
+            {/* 13. 3D Walking Developer Journey & Verified Resume Architecture */}
             <ResumeSection />
 
-            {/* 13. Direct Communication Terminal (Preserved Resend API) */}
+            {/* 14. Direct Communication Terminal (Preserved Resend API) */}
             <ContactSection />
 
-            {/* 14. Premium Footer */}
+            {/* 15. Premium Footer */}
             <Footer />
           </div>
         )}
