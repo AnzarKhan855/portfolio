@@ -7,11 +7,12 @@ import { CommandPalette } from '@/components/CommandPalette';
 import { Hero } from '@/components/Hero';
 import { WhatIBuild } from '@/components/WhatIBuild';
 import { AboutStory } from '@/components/AboutStory';
-import { TechnologyUniverseSection } from '@/components/TechnologyUniverseSection';
-import { LoopShowcase } from '@/components/LoopShowcase';
+import { EngineeringJourneySection } from '@/components/EngineeringJourneySection';
 import { DecisionLensShowcase } from '@/components/DecisionLensShowcase';
+import { LoopShowcase } from '@/components/LoopShowcase';
 import { ProjectsSection } from '@/components/ProjectsSection';
 import { ArchitectureSection } from '@/components/ArchitectureSection';
+import { TechnologyUniverseSection } from '@/components/TechnologyUniverseSection';
 import { EngineeringPipeline } from '@/components/EngineeringPipeline';
 import { GitHubDashboard } from '@/components/GitHubDashboard';
 import { ExperienceTimeline } from '@/components/ExperienceTimeline';
@@ -63,40 +64,43 @@ export default function Home() {
             {/* 3. About & Engineering DNA & Concrete Metrics */}
             <AboutStory />
 
-            {/* 4. The Signature Experience: Anzar's Technology Universe (7 Revolving Galaxies & 7 Worlds) */}
-            <TechnologyUniverseSection />
+            {/* 4. Interactive 3D Engineering Documentary (Walking Developer Career Journey) */}
+            <EngineeringJourneySection />
 
-            {/* 5. Flagship Production Centerpiece #1: LOOP 2.0 AI Customer Feedback Intelligence */}
-            <LoopShowcase />
-
-            {/* 6. Flagship Production Centerpiece #2: DecisionLens AI Analytics Engine */}
+            {/* 5. Flagship Production Centerpiece: DecisionLens AI Analytics Engine (269 Pytests Passing) */}
             <DecisionLensShowcase />
 
-            {/* 7. Complete Shipped Projects Showcase & Case Studies (7 Verified Platforms) */}
+            {/* 6. Latest Production System Spotlight: LOOP 2.0 AI Customer Feedback Intelligence */}
+            <LoopShowcase />
+
+            {/* 7. Complete Shipped Projects Showcase & Case Studies (7 Verified Platforms in Story Order) */}
             <ProjectsSection />
 
             {/* 8. Interactive System Architecture Lab & Constellation */}
             <ArchitectureSection />
 
-            {/* 9. How I Build / 7-Stage Engineering Pipeline */}
+            {/* 9. The Signature Experience: Anzar's Technology Universe (7 Revolving Galaxies & 7 Worlds) */}
+            <TechnologyUniverseSection />
+
+            {/* 10. How I Build / 7-Stage Engineering Pipeline */}
             <EngineeringPipeline />
 
-            {/* 10. GitHub Open-Source Dashboard & Commit Activity */}
+            {/* 11. GitHub Open-Source Dashboard & Commit Activity */}
             <GitHubDashboard />
 
-            {/* 11. Journey, Research & Milestones */}
+            {/* 12. Journey, Research & Milestones */}
             <ExperienceTimeline />
 
-            {/* 12. AI Lab Experiments */}
+            {/* 13. AI Lab Experiments */}
             <AILab />
 
-            {/* 13. 3D Walking Developer Journey & Verified Resume Architecture */}
+            {/* 14. Recruiter Resume Dossier, PDF Download & ATS Forensic Scorecard */}
             <ResumeSection />
 
-            {/* 14. Direct Communication Terminal (Preserved Resend API) */}
+            {/* 15. Direct Communication Terminal (Preserved Resend API) */}
             <ContactSection />
 
-            {/* 15. Premium Footer */}
+            {/* 16. Premium Footer */}
             <Footer />
           </div>
         )}

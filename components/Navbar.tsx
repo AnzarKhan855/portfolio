@@ -55,11 +55,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCommandPalette }) => {
 
   const navLinks = [
     { id: 'hero', label: 'Home' },
-    { id: 'universe', label: 'Universe' },
+    { id: 'story', label: '3D Journey' },
+    { id: 'decisionlens', label: 'DecisionLens' },
     { id: 'loop', label: 'LOOP 2.0' },
     { id: 'projects', label: 'Projects' },
     { id: 'architecture', label: 'Architecture' },
-    { id: 'story', label: '3D Story' },
+    { id: 'universe', label: 'Universe' },
     { id: 'resume', label: 'Resume' },
     { id: 'contact', label: 'Contact' },
   ];
@@ -161,16 +162,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCommandPalette }) => {
 
             {/* Resume Button */}
             <a
-              href="/api/resume"
+              href="/Anzar_Khan_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              download="Anzar_Khan_Resume.txt"
+              download="Anzar_Khan_Resume.pdf"
               onMouseEnter={() => audioEngine.playHover()}
               data-cursor="RESUME"
-              className="hidden sm:flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-[#090c18] border border-slate-800 hover:border-purple-400 text-purple-300 font-mono text-xs font-semibold hover:bg-purple-950/20 transition-all"
+              className="hidden sm:flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-[#090c18] border border-slate-800 hover:border-[#00FFA3] text-[#00FFA3] font-mono text-xs font-semibold hover:bg-emerald-950/20 transition-all shadow-[0_0_12px_rgba(0,255,163,0.15)]"
             >
-              <FileText className="w-3.5 h-3.5 text-purple-400" />
-              <span>Resume</span>
+              <FileText className="w-3.5 h-3.5 text-[#00FFA3]" />
+              <span>Resume (.PDF)</span>
             </a>
 
             {/* Get In Touch Pill */}
@@ -249,14 +250,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCommandPalette }) => {
             {/* Drawer Bottom Actions */}
             <div className="pt-6 border-t border-slate-800 space-y-3">
               <a
-                href="/api/resume"
+                href="/Anzar_Khan_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                download="Anzar_Khan_Resume.txt"
-                className="w-full py-3 rounded-xl bg-[#05060a] border border-purple-500/40 text-purple-300 font-mono text-xs font-bold flex items-center justify-center space-x-2"
+                download="Anzar_Khan_Resume.pdf"
+                className="w-full py-3 rounded-xl bg-[#05060a] border border-[#00FFA3]/50 text-[#00FFA3] font-mono text-xs font-bold flex items-center justify-center space-x-2"
               >
-                <FileText className="w-4 h-4 text-purple-400" />
-                <span>Download Resume</span>
+                <FileText className="w-4 h-4 text-[#00FFA3]" />
+                <span>Download Resume (.PDF)</span>
               </a>
 
               <button

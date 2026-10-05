@@ -89,19 +89,27 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
             </h4>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               <button
+                onClick={() => navigateTo('decisionlens')}
+                className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-[#F59E0B]/10 border border-[#F59E0B]/30 hover:border-[#F59E0B] text-left transition-all"
+              >
+                <Cpu className="w-4 h-4 text-[#F59E0B]" />
+                <span className="text-slate-200 truncate">★ DecisionLens (Flagship)</span>
+              </button>
+
+              <button
                 onClick={() => navigateTo('loop')}
                 className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-[#00FFA3]/10 border border-[#00FFA3]/30 hover:border-[#00FFA3] text-left transition-all"
               >
                 <Sparkles className="w-4 h-4 text-[#00FFA3]" />
-                <span className="text-slate-200 truncate">LOOP 2.0 (Flagship)</span>
+                <span className="text-slate-200 truncate">🚀 LOOP 2.0 (Latest)</span>
               </button>
 
               <button
-                onClick={() => navigateTo('decisionlens')}
+                onClick={() => navigateTo('story')}
                 className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-[#00E0FF]/10 border border-slate-800 hover:border-[#00E0FF]/40 text-left transition-all"
               >
-                <Cpu className="w-4 h-4 text-[#00E0FF]" />
-                <span className="text-slate-200 truncate">DecisionLens AI</span>
+                <Compass className="w-4 h-4 text-[#00E0FF]" />
+                <span className="text-slate-200 truncate">3D Career Journey</span>
               </button>
 
               <button
@@ -129,14 +137,6 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
               </button>
 
               <button
-                onClick={() => navigateTo('story')}
-                className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-emerald-500/10 border border-slate-800 hover:border-emerald-400/40 text-left transition-all"
-              >
-                <Compass className="w-4 h-4 text-emerald-400" />
-                <span className="text-slate-200 truncate">3D Walking Story</span>
-              </button>
-
-              <button
                 onClick={() => navigateTo('pipeline')}
                 className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-purple-500/10 border border-slate-800 hover:border-purple-400/40 text-left transition-all"
               >
@@ -153,14 +153,14 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
               </button>
 
               <a
-                href="/api/resume"
+                href="/Anzar_Khan_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                download="Anzar_Khan_Resume.txt"
+                download="Anzar_Khan_Resume.pdf"
                 className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-emerald-500/10 border border-slate-800 hover:border-emerald-400/40 text-left transition-all"
               >
                 <FileText className="w-4 h-4 text-emerald-400" />
-                <span className="text-slate-200 truncate">Download Resume</span>
+                <span className="text-slate-200 truncate">Resume (.PDF)</span>
               </a>
             </div>
           </div>

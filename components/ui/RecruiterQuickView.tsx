@@ -52,15 +52,15 @@ export const RecruiterQuickView: React.FC = () => {
           {/* Quick Direct Recruiter Actions */}
           <div className="flex items-center space-x-2 shrink-0">
             <a
-              href="/api/resume"
+              href="/Anzar_Khan_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              download="Anzar_Khan_FullStack_AI_Resume.txt"
+              download="Anzar_Khan_Resume.pdf"
               onMouseEnter={() => audioEngine.playHover()}
-              className="px-3.5 py-1.5 rounded-lg bg-[#00E0FF]/15 border border-[#00E0FF]/40 text-[#00E0FF] font-mono text-xs font-bold hover:bg-[#00E0FF]/25 transition-all flex items-center space-x-1.5"
+              className="px-3.5 py-1.5 rounded-lg bg-[#00E0FF]/15 border border-[#00E0FF]/40 text-[#00E0FF] font-mono text-xs font-bold hover:bg-[#00E0FF]/25 transition-all flex items-center space-x-1.5 shadow-[0_0_12px_rgba(0,224,255,0.2)]"
             >
               <FileText className="w-3.5 h-3.5" />
-              <span>Resume</span>
+              <span>Resume (.PDF)</span>
             </a>
 
             <a

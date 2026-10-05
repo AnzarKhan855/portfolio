@@ -137,16 +137,16 @@ export const Hero: React.FC = () => {
 
           {/* Resume CTA */}
           <a
-            href="/api/resume"
+            href="/Anzar_Khan_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            download="Anzar_Khan_Resume.txt"
+            download="Anzar_Khan_Resume.pdf"
             onMouseEnter={() => audioEngine.playHover()}
             data-cursor="RESUME"
-            className="px-5 py-3.5 rounded-full font-mono text-xs font-semibold text-slate-300 bg-[#090c18]/90 hover:bg-[#0f1424] border border-slate-800 hover:border-purple-400 backdrop-blur-xl transition-all duration-300 flex items-center space-x-2"
+            className="px-5 py-3.5 rounded-full font-mono text-xs font-semibold text-[#00FFA3] bg-[#090c18]/90 hover:bg-[#0f1424] border border-[#00FFA3]/40 hover:border-[#00FFA3] backdrop-blur-xl transition-all duration-300 flex items-center space-x-2 shadow-[0_0_15px_rgba(0,255,163,0.15)]"
           >
-            <FileText className="w-3.5 h-3.5 text-purple-400" />
-            <span>RESUME</span>
+            <FileText className="w-3.5 h-3.5 text-[#00FFA3]" />
+            <span>RESUME (.PDF)</span>
           </a>
         </motion.div>
 
@@ -167,10 +167,22 @@ export const Hero: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             onMouseEnter={() => audioEngine.playHover()}
-            className="px-3 py-1.5 rounded-lg bg-[#090c18] border border-[#00E0FF]/40 text-[#00E0FF] hover:bg-[#00E0FF]/10 text-xs font-mono transition-all flex items-center space-x-1.5 shadow-sm"
+            className="px-3 py-1.5 rounded-lg bg-[#090c18] border border-[#F59E0B]/50 text-[#F59E0B] hover:bg-[#F59E0B]/10 text-xs font-mono transition-all flex items-center space-x-1.5 shadow-sm"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            <span>DecisionLens AI</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B]" />
+            <span>★ DecisionLens AI (Flagship)</span>
+            <ArrowUpRight className="w-3 h-3 opacity-70" />
+          </a>
+
+          <a
+            href="https://ai-customer-feedback-intelligence-black.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            onMouseEnter={() => audioEngine.playHover()}
+            className="px-3 py-1.5 rounded-lg bg-[#090c18] border border-[#00FFA3]/50 text-[#00FFA3] hover:bg-[#00FFA3]/10 text-xs font-mono transition-all flex items-center space-x-1.5 shadow-sm"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00FFA3]" />
+            <span>🚀 LOOP 2.0 (Latest)</span>
             <ArrowUpRight className="w-3 h-3 opacity-70" />
           </a>
 
