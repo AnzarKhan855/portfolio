@@ -3,9 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Search, Terminal, Sparkles, FileText, FolderGit2, Cpu, 
-  Mail, ExternalLink, X, Network, GitBranch, Layers, ShieldCheck 
+  Mail, ExternalLink, X, Network, GitBranch, Layers, ShieldCheck,
+  CheckCircle2, Workflow, Orbit, Compass, UserCheck
 } from 'lucide-react';
-import { PROJECTS, PERSONAL_INFO } from '@/lib/portfolioData';
+import { PROJECTS, PERSONAL_INFO, LOOP, DECISIONLENS } from '@/lib/portfolioData';
 import { audioEngine } from '@/lib/audio';
 
 interface CommandPaletteProps {
@@ -18,7 +19,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
         if (isOpen) onClose();
       }
@@ -44,8 +45,10 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
 
   const filteredProjects = PROJECTS.filter((p) =>
     p.title.toLowerCase().includes(query.toLowerCase()) ||
+    p.tagline.toLowerCase().includes(query.toLowerCase()) ||
     p.category.toLowerCase().includes(query.toLowerCase()) ||
-    p.technologies.some((t) => t.toLowerCase().includes(query.toLowerCase()))
+    p.technologies.some((t) => t.toLowerCase().includes(query.toLowerCase())) ||
+    (p.filterTags && p.filterTags.some((tag) => tag.toLowerCase().includes(query.toLowerCase())))
   );
 
   return (
@@ -64,7 +67,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Type a command, project name, or technology..."
+            placeholder="Type a command, project, technology, or capability..."
             className="w-full bg-transparent text-sm text-slate-100 placeholder-slate-500 focus:outline-none font-mono"
             autoFocus
           />
@@ -80,32 +83,41 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
         <div className="max-h-[60vh] overflow-y-auto p-4 space-y-4 font-mono text-xs">
           {/* Quick Navigation Commands */}
           <div>
-            <h4 className="text-[11px] text-[#00E0FF] tracking-wider uppercase mb-2 font-bold">
-              Navigation Commands
+            <h4 className="text-[11px] text-[#00E0FF] tracking-wider uppercase mb-2 font-bold flex items-center gap-1.5">
+              <Terminal className="w-3.5 h-3.5" />
+              <span>Core Navigation & Experience</span>
             </h4>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               <button
-                onClick={() => navigateTo('projects')}
+                onClick={() => navigateTo('loop')}
+                className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-[#00FFA3]/10 border border-[#00FFA3]/30 hover:border-[#00FFA3] text-left transition-all"
+              >
+                <Sparkles className="w-4 h-4 text-[#00FFA3]" />
+                <span className="text-slate-200 truncate">LOOP 2.0 (Flagship)</span>
+              </button>
+
+              <button
+                onClick={() => navigateTo('decisionlens')}
                 className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-[#00E0FF]/10 border border-slate-800 hover:border-[#00E0FF]/40 text-left transition-all"
               >
-                <FolderGit2 className="w-4 h-4 text-[#00E0FF]" />
-                <span className="text-slate-200">View Projects</span>
+                <Cpu className="w-4 h-4 text-[#00E0FF]" />
+                <span className="text-slate-200 truncate">DecisionLens AI</span>
+              </button>
+
+              <button
+                onClick={() => navigateTo('projects')}
+                className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-[#7C5CFF]/10 border border-slate-800 hover:border-[#7C5CFF]/40 text-left transition-all"
+              >
+                <FolderGit2 className="w-4 h-4 text-[#7C5CFF]" />
+                <span className="text-slate-200 truncate">All 7 Projects</span>
               </button>
 
               <button
                 onClick={() => navigateTo('universe')}
-                className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-[#00FFA3]/10 border border-slate-800 hover:border-[#00FFA3]/40 text-left transition-all"
+                className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-cyan-500/10 border border-slate-800 hover:border-cyan-400 text-left transition-all"
               >
-                <Cpu className="w-4 h-4 text-[#00FFA3]" />
-                <span className="text-slate-200">Tech Universe</span>
-              </button>
-
-              <button
-                onClick={() => navigateTo('what-i-build')}
-                className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-[#00E0FF]/10 border border-slate-800 hover:border-[#00E0FF]/40 text-left transition-all"
-              >
-                <Cpu className="w-4 h-4 text-[#00E0FF]" />
-                <span className="text-slate-200">What I Build</span>
+                <Orbit className="w-4 h-4 text-cyan-400" />
+                <span className="text-slate-200 truncate">7-Galaxy Universe</span>
               </button>
 
               <button
@@ -113,31 +125,31 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
                 className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-[#7C5CFF]/10 border border-slate-800 hover:border-[#7C5CFF]/40 text-left transition-all"
               >
                 <Network className="w-4 h-4 text-[#7C5CFF]" />
-                <span className="text-slate-200">Architecture</span>
+                <span className="text-slate-200 truncate">Architecture Lab</span>
               </button>
 
               <button
-                onClick={() => navigateTo('dna')}
+                onClick={() => navigateTo('story')}
                 className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-emerald-500/10 border border-slate-800 hover:border-emerald-400/40 text-left transition-all"
               >
-                <Cpu className="w-4 h-4 text-emerald-400" />
-                <span className="text-slate-200">Engineering DNA</span>
+                <Compass className="w-4 h-4 text-emerald-400" />
+                <span className="text-slate-200 truncate">3D Walking Story</span>
               </button>
 
               <button
                 onClick={() => navigateTo('pipeline')}
                 className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-purple-500/10 border border-slate-800 hover:border-purple-400/40 text-left transition-all"
               >
-                <GitBranch className="w-4 h-4 text-purple-400" />
-                <span className="text-slate-200">Build Pipeline</span>
+                <Workflow className="w-4 h-4 text-purple-400" />
+                <span className="text-slate-200 truncate">Build Pipeline</span>
               </button>
 
               <button
                 onClick={() => navigateTo('contact')}
-                className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-cyan-500/10 border border-slate-800 hover:border-cyan-400/40 text-left transition-all"
+                className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-cyan-500/10 border border-slate-800 hover:border-cyan-400 text-left transition-all"
               >
                 <Mail className="w-4 h-4 text-cyan-400" />
-                <span className="text-slate-200">Contact Terminal</span>
+                <span className="text-slate-200 truncate">Contact Terminal</span>
               </button>
 
               <a
@@ -148,27 +160,37 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
                 className="flex items-center space-x-2 p-2.5 rounded-lg bg-[#05060a] hover:bg-emerald-500/10 border border-slate-800 hover:border-emerald-400/40 text-left transition-all"
               >
                 <FileText className="w-4 h-4 text-emerald-400" />
-                <span className="text-slate-200">Download Resume</span>
+                <span className="text-slate-200 truncate">Download Resume</span>
               </a>
             </div>
           </div>
 
-          {/* Filtered Projects */}
+          {/* Filtered Projects Section */}
           {filteredProjects.length > 0 && (
             <div>
-              <h4 className="text-[11px] text-purple-400 tracking-wider uppercase mb-2 font-bold">
-                Projects ({filteredProjects.length})
+              <h4 className="text-[11px] text-purple-400 tracking-wider uppercase mb-2 font-bold flex items-center justify-between">
+                <span>Production Projects ({filteredProjects.length})</span>
+                <span className="text-[10px] text-slate-500 font-normal">Click to navigate</span>
               </h4>
               <div className="space-y-1.5">
                 {filteredProjects.map((project) => (
                   <div
                     key={project.id}
-                    onClick={() => navigateTo(project.id === 'decisionlens-ai' ? 'decisionlens' : 'projects')}
+                    onClick={() => {
+                      if (project.id === 'loop-ai') navigateTo('loop');
+                      else if (project.id === 'decisionlens-ai') navigateTo('decisionlens');
+                      else navigateTo('projects');
+                    }}
                     className="flex items-center justify-between p-2.5 rounded-lg bg-[#05060a] hover:bg-slate-800/80 border border-slate-800/80 hover:border-[#00E0FF]/40 cursor-pointer transition-all group"
                   >
                     <div>
-                      <div className="text-xs font-bold text-white group-hover:text-[#00E0FF]">
-                        {project.title}
+                      <div className="text-xs font-bold text-white group-hover:text-[#00E0FF] flex items-center gap-2">
+                        <span>{project.title}</span>
+                        {project.maturityLevel && (
+                          <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+                            {project.maturityLevel}
+                          </span>
+                        )}
                       </div>
                       <div className="text-[11px] text-slate-400 font-sans">{project.tagline}</div>
                     </div>
@@ -179,9 +201,9 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
             </div>
           )}
 
-          {/* Social Profiles */}
+          {/* Social Profiles & Verified Presence */}
           <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-[11px]">
-            <span className="text-slate-500">QUICK LINKS:</span>
+            <span className="text-slate-500">VERIFIED PROFILES:</span>
             <div className="flex space-x-4">
               <a
                 href={PERSONAL_INFO.githubUrl}

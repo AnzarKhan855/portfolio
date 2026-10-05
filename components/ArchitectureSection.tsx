@@ -4,10 +4,16 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Network, Cpu, Server, Database, Globe, Shield, Activity, 
-  Layers, ArrowRight, Check, Zap, Sparkles, FolderGit2, ExternalLink 
+  Layers, ArrowRight, Check, Zap, Sparkles, FolderGit2, ExternalLink,
+  ChevronRight, Workflow, CheckCircle2
 } from 'lucide-react';
 import dynamic from 'next/dynamic';
-import { ARCHITECTURE_ECOSYSTEM, PROJECTS } from '@/lib/portfolioData';
+import { 
+  ARCHITECTURE_ECOSYSTEM, 
+  PROJECTS, 
+  PROJECT_ARCHITECTURE_FLOWS, 
+  ProjectArchitectureFlow 
+} from '@/lib/portfolioData';
 import { audioEngine } from '@/lib/audio';
 
 const TechUniverseCanvas = dynamic(
@@ -17,11 +23,21 @@ const TechUniverseCanvas = dynamic(
 
 export const ArchitectureSection: React.FC = () => {
   const [selectedNode, setSelectedNode] = useState(ARCHITECTURE_ECOSYSTEM[0]);
-  const [viewMode, setViewMode] = useState<'software-universe' | 'layered-mesh' | '3d-orbital'>('software-universe');
+  const [viewMode, setViewMode] = useState<'software-universe' | 'layered-mesh' | 'project-pipelines' | '3d-orbital'>('software-universe');
+  const [activePipelineKey, setActivePipelineKey] = useState<string>('loop-ai');
+  const [selectedStepIndex, setSelectedStepIndex] = useState<number>(0);
+
+  const activePipeline: ProjectArchitectureFlow | undefined = PROJECT_ARCHITECTURE_FLOWS[activePipelineKey] || PROJECT_ARCHITECTURE_FLOWS['loop-ai'];
 
   const handleSelectNode = (node: typeof ARCHITECTURE_ECOSYSTEM[0]) => {
     audioEngine.playHover();
     setSelectedNode(node);
+  };
+
+  const handleSelectPipeline = (key: string) => {
+    audioEngine.playClick();
+    setActivePipelineKey(key);
+    setSelectedStepIndex(0);
   };
 
   const scrollTo = (id: string) => {
@@ -36,7 +52,7 @@ export const ArchitectureSection: React.FC = () => {
       <div className="absolute inset-0 bg-grid-cyber opacity-30 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header (Master Prompt Section 9 Spec) */}
+        {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
           <div>
             <div className="flex items-center space-x-3 mb-3">
@@ -44,7 +60,7 @@ export const ArchitectureSection: React.FC = () => {
                 <Network className="w-5 h-5" />
               </div>
               <span className="text-xs font-mono text-[#00E0FF] tracking-widest uppercase">
-                {`// SECTION 09 & 23 — INTERACTIVE SOFTWARE ARCHITECTURE`}
+                {`// SYSTEM DESIGN & ARCHITECTURAL LAB`}
               </span>
             </div>
 
@@ -52,11 +68,11 @@ export const ArchitectureSection: React.FC = () => {
               My Software <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#00E0FF] to-[#7C5CFF] inline-block">Universe</span>
             </h2>
             <p className="text-slate-400 font-sans text-base max-w-2xl mt-2 leading-relaxed">
-              Explore how Anzar Khan&apos;s production platforms, technology stack, async microservices, machine learning ensembles, and vector storage interconnect.
+              Explore how production platforms, async microservices, machine learning ensembles, dual NLP engines, and vector persistence topologies interconnect across full-stack systems.
             </p>
           </div>
 
-          {/* View Mode Toggle: Software Universe vs Layered Mesh vs 3D Solar System */}
+          {/* View Mode Toggle: Software Universe vs Layered Mesh vs Project Pipelines vs 3D Solar System */}
           <div className="flex flex-wrap items-center gap-1.5 p-1.5 rounded-2xl bg-[#090c18] border border-slate-800 shrink-0">
             <button
               onClick={() => {
@@ -69,7 +85,7 @@ export const ArchitectureSection: React.FC = () => {
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              Software Universe
+              Constellation
             </button>
             <button
               onClick={() => {
@@ -82,7 +98,20 @@ export const ArchitectureSection: React.FC = () => {
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              Layered System Mesh
+              Layered Mesh
+            </button>
+            <button
+              onClick={() => {
+                audioEngine.playClick();
+                setViewMode('project-pipelines');
+              }}
+              className={`px-3.5 py-2 rounded-xl font-mono text-xs transition-all ${
+                viewMode === 'project-pipelines'
+                  ? 'bg-[#00FFA3]/15 text-[#00FFA3] border border-[#00FFA3]/50 font-bold shadow-[0_0_15px_rgba(0,255,163,0.25)]'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              Project Pipelines
             </button>
             <button
               onClick={() => {
@@ -100,8 +129,10 @@ export const ArchitectureSection: React.FC = () => {
           </div>
         </div>
 
+        {/* ========================================================================= */}
+        {/* VIEW MODE 1: SOFTWARE UNIVERSE CONSTELLATION */}
+        {/* ========================================================================= */}
         {viewMode === 'software-universe' && (
-          /* Master Prompt Section 9: My Software Universe Node Network */
           <div className="glass-panel-active rounded-3xl p-8 sm:p-12 border border-[#00E0FF]/30 space-y-10 relative overflow-hidden">
             <div className="text-center max-w-xl mx-auto space-y-2">
               <span className="text-[11px] font-mono text-[#00E0FF] uppercase tracking-wider">
@@ -117,7 +148,7 @@ export const ArchitectureSection: React.FC = () => {
 
             {/* Central Core & Orbiting Project Nodes Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {PROJECTS.map((proj, idx) => {
+              {PROJECTS.map((proj) => {
                 const color = proj.accentColor || '#00E0FF';
                 return (
                   <div
@@ -165,7 +196,7 @@ export const ArchitectureSection: React.FC = () => {
                     ANZAR KHAN SOFTWARE CORE
                   </div>
                   <div className="text-xs font-mono text-slate-300">
-                    Next.js • React • FastAPI • Python • MongoDB • PostgreSQL • Qdrant • Docker
+                    Next.js • React • FastAPI • Python • MongoDB • PostgreSQL • Neon • Qdrant • Docker
                   </div>
                 </div>
               </div>
@@ -180,8 +211,10 @@ export const ArchitectureSection: React.FC = () => {
           </div>
         )}
 
+        {/* ========================================================================= */}
+        {/* VIEW MODE 2: LAYERED SYSTEM MESH (7 LAYERS) */}
+        {/* ========================================================================= */}
         {viewMode === 'layered-mesh' && (
-          /* Layered Mesh 7-layer Interactive Stack */
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left: Interactive Node Selector Mesh */}
             <div className="lg:col-span-7 space-y-3">
@@ -276,8 +309,121 @@ export const ArchitectureSection: React.FC = () => {
           </div>
         )}
 
+        {/* ========================================================================= */}
+        {/* VIEW MODE 3: PROJECT-BY-PROJECT INTERACTIVE PIPELINES */}
+        {/* ========================================================================= */}
+        {viewMode === 'project-pipelines' && (
+          <div className="glass-panel-active rounded-3xl p-6 sm:p-10 border border-[#00FFA3]/30 space-y-8">
+            {/* Top Selector: Choose from the 7 Project Pipelines */}
+            <div className="flex flex-wrap items-center gap-2 pb-6 border-b border-slate-800">
+              <span className="text-xs font-mono text-slate-400 uppercase mr-2 flex items-center gap-1">
+                <Workflow className="w-4 h-4 text-[#00FFA3]" />
+                Select Pipeline:
+              </span>
+              {[
+                { key: 'loop-ai', label: 'LOOP 2.0 (VoC Intelligence)' },
+                { key: 'decisionlens-ai', label: 'DecisionLens (Analytics)' },
+                { key: 'riskshield-ai', label: 'RiskShield (Fraud AI)' },
+                { key: 'campusagent-ai', label: 'CampusAgent (Vector RAG)' },
+                { key: 'evalmentor-ai', label: 'EvalMentor (FastAPI / Groq)' },
+                { key: 'resume-builder', label: 'Resume Builder (ATS Engine)' },
+                { key: 'bookstore-sql', label: 'BookStore SQL (Relational)' },
+              ].map((proj) => (
+                <button
+                  key={proj.key}
+                  onClick={() => handleSelectPipeline(proj.key)}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all ${
+                    activePipelineKey === proj.key
+                      ? 'bg-[#00FFA3]/15 text-[#00FFA3] border border-[#00FFA3]/50 font-bold'
+                      : 'bg-[#090c18] text-slate-400 border border-slate-800 hover:text-white'
+                  }`}
+                >
+                  {proj.label}
+                </button>
+              ))}
+            </div>
+
+            {activePipeline && (
+              <div className="space-y-6">
+                <div>
+                  <div className="flex items-center gap-2 text-xs font-mono text-[#00FFA3] uppercase">
+                    <span className="w-2 h-2 rounded-full bg-[#00FFA3]" />
+                    <span>{activePipeline.projectTitle} Architectural Flow</span>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold font-mono text-white mt-1">
+                    {activePipeline.headline}
+                  </h3>
+                </div>
+
+                {/* Horizontal Step Sequence */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3">
+                  {activePipeline.steps.map((step, idx) => {
+                    const isSelected = selectedStepIndex === idx;
+                    return (
+                      <div
+                        key={step.id}
+                        onClick={() => {
+                          audioEngine.playHover();
+                          setSelectedStepIndex(idx);
+                        }}
+                        className={`p-3.5 rounded-2xl border cursor-pointer transition-all duration-300 ${
+                          isSelected
+                            ? 'bg-[#00FFA3]/15 border-[#00FFA3] shadow-[0_0_20px_rgba(0,255,163,0.2)]'
+                            : 'bg-[#090c18] border-slate-800 hover:border-slate-700'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between mb-2">
+                          <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded ${
+                            isSelected ? 'bg-[#00FFA3] text-[#05060a] font-bold' : 'bg-slate-800 text-slate-400'
+                          }`}>
+                            0{step.stepNumber}
+                          </span>
+                          <span className="text-[9px] font-mono text-slate-500 truncate max-w-[80px]">
+                            {step.tech}
+                          </span>
+                        </div>
+                        <div className="text-xs font-bold font-mono text-white truncate">
+                          {step.label}
+                        </div>
+                        <div className="text-[10px] text-slate-400 truncate mt-0.5">
+                          {step.subLabel}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Active Step Deep Inspector */}
+                {activePipeline.steps[selectedStepIndex] && (
+                  <motion.div
+                    key={`${activePipelineKey}-${selectedStepIndex}`}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="p-6 rounded-2xl bg-[#090c18] border border-slate-800 space-y-3"
+                  >
+                    <div className="flex items-center justify-between text-xs font-mono">
+                      <span className="text-[#00FFA3] uppercase font-bold flex items-center gap-1.5">
+                        <CheckCircle2 className="w-4 h-4 text-[#00FFA3]" />
+                        Step 0{activePipeline.steps[selectedStepIndex].stepNumber}: {activePipeline.steps[selectedStepIndex].label} — {activePipeline.steps[selectedStepIndex].subLabel}
+                      </span>
+                      <span className="text-slate-400 px-2 py-0.5 rounded bg-[#05060a] border border-slate-800">
+                        {activePipeline.steps[selectedStepIndex].tech}
+                      </span>
+                    </div>
+                    <p className="text-sm font-sans text-slate-300 leading-relaxed">
+                      {activePipeline.steps[selectedStepIndex].description}
+                    </p>
+                  </motion.div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ========================================================================= */}
+        {/* VIEW MODE 4: 3D SOLAR UNIVERSE CANVAS */}
+        {/* ========================================================================= */}
         {viewMode === '3d-orbital' && (
-          /* 3D Solar Universe Canvas */
           <div className="glass-panel-active rounded-3xl p-4 sm:p-8 border border-[#7C5CFF]/30 overflow-hidden">
             <div className="mb-4 flex items-center justify-between">
               <span className="text-xs font-mono text-[#00E0FF]">
