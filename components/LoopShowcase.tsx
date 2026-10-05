@@ -171,7 +171,7 @@ export const LoopShowcase: React.FC = () => {
           <div>
             <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-[#00FFA3]/15 border border-[#00FFA3]/40 text-[#00FFA3] text-xs font-mono mb-3">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>FLAGSHIP ENTERPRISE SAAS CENTERPIECE</span>
+              <span>LATEST PRODUCTION PLATFORM • 2026 RELEASE</span>
             </div>
             <h2 className="text-4xl sm:text-6xl font-black text-white font-display tracking-tight isolate-text transform-gpu">
               LOOP <span className="text-[#00FFA3]">2.0</span>
