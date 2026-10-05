@@ -6,7 +6,7 @@ import {
   FileText, Download, Copy, Check, Code2, 
   GraduationCap, Briefcase, Award, Mail, Phone, MapPin, 
   Github, Linkedin, CheckCircle2, ChevronRight, Sparkles,
-  BookOpen, Terminal, Cpu, ArrowRight, Layers 
+  BookOpen, Terminal, Cpu, ArrowRight, Layers, ShieldCheck, BarChart3, Database 
 } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { PERSONAL_INFO, PROJECTS } from '@/lib/portfolioData';
@@ -25,7 +25,7 @@ export const ResumeSection: React.FC = () => {
   const [copied, setCopied] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Scroll listener to drive character walking through the 8 stages
+  // Scroll listener to drive character walking through the 9 stages
   useEffect(() => {
     let ticking = false;
 
@@ -42,7 +42,7 @@ export const ResumeSection: React.FC = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
           setScrollProgress(progress);
-          const stageIndex = Math.min(7, Math.floor(progress * 8));
+          const stageIndex = Math.min(8, Math.floor(progress * 9));
           setActiveStage(stageIndex);
           ticking = false;
         });
@@ -67,22 +67,31 @@ Allenhouse Institute of Technology, AKTU
 Bachelor of Technology (B.Tech) in Artificial Intelligence & Machine Learning (2023 - 2027)
 
 SHIPPED PRODUCTION PLATFORMS:
-1. DecisionLens AI — Enterprise Decision Intelligence Platform
+1. LOOP 2.0 — AI Customer Feedback Intelligence Platform (FLAGSHIP)
+   https://github.com/AnzarKhan855/ai-customer-feedback-intelligence
+   Live: https://ai-customer-feedback-intelligence-black.vercel.app
+2. DecisionLens AI — Enterprise Decision Intelligence Platform (FLAGSHIP)
    https://github.com/AnzarKhan855/decisionlens-enterprise-analytics
-2. RiskShield AI — Enterprise Fraud Intelligence & Decisioning Mesh (Clean Architecture)
+   Live: https://decisionlens-enterprise-analytics.vercel.app
+3. RiskShield AI — Enterprise Fraud Intelligence & Autonomous Decisioning Mesh (Clean Architecture)
    https://github.com/AnzarKhan855/riskshield-ai
-3. CampusAgent AI — Agentic AI Student Productivity Platform (Qdrant Vector DB)
+   Live: https://riskshield-ai-kappa.vercel.app
+4. CampusAgent AI — Agentic AI Student Productivity Platform (Qdrant Vector DB)
    https://github.com/AnzarKhan855/campusagent-ai
-4. EvalMentor AI — AI Interview Agent & Evaluation Platform
+   Live: https://campusagent-ai.vercel.app
+5. EvalMentor AI — AI Interview Agent & Evaluation Platform
    https://github.com/AnzarKhan855/evalmentor-ai
-5. AI Resume Builder — ATS-Friendly SaaS & Document Parsing
+   Live: https://evalmentor-ai.vercel.app
+6. AI Resume Builder — ATS Resume Intelligence & Forensic Document Parser
    https://github.com/AnzarKhan855/resume-builder
-6. BookStore SQL Analytics — Relational Database & Revenue Intelligence
+   Live: https://ats-resumebuilder.vercel.app
+7. BookStore SQL Analytics — 3NF Relational Database & Revenue BI Engine
    https://github.com/AnzarKhan855/BookStore-SQL-Analysis
 
 CORE TECHNICAL STACK:
-Next.js 15, React 19, TypeScript, Tailwind CSS, FastAPI, Python 3.12, Node.js, Express,
-PostgreSQL, MongoDB Atlas, Qdrant Vector DB, XGBoost, Scikit-Learn, TreeSHAP, Docker, Vercel, Render.`;
+Next.js 14/15, React 19, TypeScript, Tailwind CSS, FastAPI, Python 3.12+, Node.js, Express,
+Prisma ORM, Neon PostgreSQL, MongoDB Atlas, Qdrant Vector DB, DuckDB, Claude 3.5 Sonnet,
+XGBoost, Scikit-Learn, TreeSHAP, Docker, Vercel, Render.`;
 
     navigator.clipboard.writeText(resumeText);
     setCopied(true);
@@ -92,7 +101,7 @@ PostgreSQL, MongoDB Atlas, Qdrant Vector DB, XGBoost, Scikit-Learn, TreeSHAP, Do
   const handleSelectStage = (idx: number) => {
     audioEngine.playClick();
     setActiveStage(idx);
-    setScrollProgress((idx + 0.5) / 8);
+    setScrollProgress((idx + 0.5) / 9);
   };
 
   const resumeJson = {
@@ -115,27 +124,35 @@ PostgreSQL, MongoDB Atlas, Qdrant Vector DB, XGBoost, Scikit-Learn, TreeSHAP, Do
     },
     verifiedProjects: PROJECTS.map((p) => ({
       name: p.title,
+      maturity: p.maturityLevel,
       category: p.category,
       status: p.status,
       github: p.githubUrl,
       liveDemo: p.demoUrl || 'Source Available',
-      technologies: p.technologies.slice(0, 5),
+      technologies: p.technologies.slice(0, 6),
     })),
     coreStack: [
-      'Next.js 15',
+      'Next.js 14/15',
       'React 19',
+      'TypeScript',
       'FastAPI',
       'Python',
-      'PostgreSQL',
-      'MongoDB',
-      'Qdrant',
+      'Prisma ORM',
+      'Neon PostgreSQL',
+      'MongoDB Atlas',
+      'Qdrant Vector DB',
+      'DuckDB',
       'XGBoost',
       'Docker',
+      'Vercel',
     ],
   };
 
   return (
     <section ref={sectionRef} id="resume" className="py-28 relative overflow-hidden bg-[#05060a]">
+      {/* Anchor for 3D Walking Journey Navigation */}
+      <div id="story" className="absolute -top-10 left-0 pointer-events-none" />
+
       {/* Background Cyber Grid */}
       <div className="absolute inset-0 bg-grid-cyber opacity-25 pointer-events-none" />
 
@@ -148,15 +165,15 @@ PostgreSQL, MongoDB Atlas, Qdrant Vector DB, XGBoost, Scikit-Learn, TreeSHAP, Do
                 <Sparkles className="w-5 h-5" />
               </div>
               <span className="text-xs font-mono text-[#00E0FF] tracking-widest uppercase">
-                {`// SCROLL-DRIVEN RESUME EXPERIENCE`}
+                {`// SCROLL-DRIVEN 3D CAREER NARRATIVE`}
               </span>
             </div>
 
             <h2 className="text-3xl sm:text-5xl font-black text-white font-display tracking-tight uppercase isolate-text transform-gpu">
-              The Engineering <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#00E0FF] via-[#7C5CFF] to-[#00FFA3] inline-block">Journey</span>
+              From Curious Student to <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#00E0FF] via-[#7C5CFF] to-[#00FFA3] inline-block">Production Builder</span>
             </h2>
             <p className="text-slate-400 font-sans text-base max-w-2xl mt-2 leading-relaxed">
-              Follow the path from learning fundamentals to building full-stack and AI-powered systems. Scroll to walk with the developer through each milestone.
+              Follow the journey through time: from school curiosity and college foundations to learning the stack, shipping products, and architecting enterprise platforms.
             </p>
           </div>
 
@@ -214,7 +231,7 @@ PostgreSQL, MongoDB Atlas, Qdrant Vector DB, XGBoost, Scikit-Learn, TreeSHAP, Do
             <div className="lg:col-span-7 space-y-4">
               <WalkingDeveloperScene scrollProgress={scrollProgress} activeStage={activeStage} />
 
-              {/* Fixed Horizontal Timeline Progress Indicator */}
+              {/* Horizontal Timeline Navigation Bar */}
               <div className="p-3 rounded-2xl bg-[#090c18] border border-slate-800 flex items-center justify-between gap-1 overflow-x-auto scrollbar-none">
                 {JOURNEY_STAGES.map((stage, idx) => {
                   const isActive = activeStage === idx;
@@ -228,7 +245,7 @@ PostgreSQL, MongoDB Atlas, Qdrant Vector DB, XGBoost, Scikit-Learn, TreeSHAP, Do
                           : 'bg-[#05060a] border border-slate-800/80 text-slate-400 hover:text-slate-200'
                       }`}
                     >
-                      <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: isActive ? '#00E0FF' : '#475569' }} />
+                      <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: isActive ? '#00FFA3' : '#475569' }} />
                       <span>0{idx + 1} {stage.title.split(' ')[0]}</span>
                     </button>
                   );
@@ -239,7 +256,7 @@ PostgreSQL, MongoDB Atlas, Qdrant Vector DB, XGBoost, Scikit-Learn, TreeSHAP, Do
             {/* Right: Verified Chapter Details & Fact Sheet */}
             <div className="lg:col-span-5 glass-panel-active rounded-3xl p-6 sm:p-8 border border-[#00E0FF]/30 min-h-[580px] flex flex-col justify-between">
               <AnimatePresence mode="wait">
-                {/* CHAPTER 01: FOUNDATIONS */}
+                {/* STAGE 01: FOUNDATIONS */}
                 {activeStage === 0 && (
                   <motion.div
                     key="stage-0"
@@ -250,24 +267,24 @@ PostgreSQL, MongoDB Atlas, Qdrant Vector DB, XGBoost, Scikit-Learn, TreeSHAP, Do
                   >
                     <div className="flex items-center space-x-2 text-xs font-mono text-[#00FFA3] uppercase tracking-wider">
                       <BookOpen className="w-4 h-4 text-[#00FFA3]" />
-                      <span>{`CHAPTER 01 // FOUNDATIONS & MATHEMATICAL LOGIC`}</span>
+                      <span>{`STAGE 01 // CURIOSITY & FOUNDATIONS`}</span>
                     </div>
 
                     <div>
                       <h3 className="text-2xl font-black font-mono text-white">
-                        Computer Science Foundations
+                        The Inception of Engineering
                       </h3>
                       <p className="text-xs font-mono text-[#00FFA3] mt-1 font-semibold">
-                        Algorithmic Thinking • Data Structures • Discrete Math
+                        Curiosity • Mathematics • Problem Solving • Computers
                       </p>
                     </div>
 
                     <div className="p-4 rounded-2xl bg-[#090c18] border border-slate-800 space-y-2">
                       <div className="text-xs font-mono text-white font-bold uppercase">
-                        The Inception of Engineering:
+                        The Foundation:
                       </div>
                       <p className="text-xs font-sans text-slate-300 leading-relaxed">
-                        Focused on foundational computational principles: asymptotic time-complexity analysis, memory structures, pointer manipulation, and relational schema normalization.
+                        Started with genuine curiosity about how computing systems operate under the hood. Mastered algorithmic logic, discrete mathematics, asymptotic complexity analysis, and object-oriented paradigms before touching production frameworks.
                       </p>
                     </div>
 
@@ -284,7 +301,7 @@ PostgreSQL, MongoDB Atlas, Qdrant Vector DB, XGBoost, Scikit-Learn, TreeSHAP, Do
                   </motion.div>
                 )}
 
-                {/* CHAPTER 02: COLLEGE */}
+                {/* STAGE 02: COLLEGE */}
                 {activeStage === 1 && (
                   <motion.div
                     key="stage-1"
@@ -295,7 +312,7 @@ PostgreSQL, MongoDB Atlas, Qdrant Vector DB, XGBoost, Scikit-Learn, TreeSHAP, Do
                   >
                     <div className="flex items-center space-x-2 text-xs font-mono text-purple-400 uppercase tracking-wider">
                       <GraduationCap className="w-4 h-4 text-purple-400" />
-                      <span>{`CHAPTER 02 // ACADEMIC RIGOR (B.TECH AI/ML)`}</span>
+                      <span>{`STAGE 02 // ACADEMIC RIGOR (B.TECH AI/ML)`}</span>
                     </div>
 
                     <div>
@@ -312,10 +329,10 @@ PostgreSQL, MongoDB Atlas, Qdrant Vector DB, XGBoost, Scikit-Learn, TreeSHAP, Do
 
                     <div className="p-4 rounded-2xl bg-[#090c18] border border-slate-800 space-y-2">
                       <div className="text-xs font-mono text-white font-bold uppercase">
-                        Rigorous Curriculum & Research:
+                        Core Academic Training:
                       </div>
                       <p className="text-xs font-sans text-slate-300 leading-relaxed">
-                        Formal university training in Neural Networks, Deep Learning, Relational Databases, Operating Systems, Computer Networks, and Software Engineering.
+                        Rigorous computer science curriculum covering Data Structures & Algorithms, Neural Networks, Deep Learning, Relational Databases (RDBMS), Operating Systems, and Software Engineering.
                       </p>
                     </div>
 
@@ -325,7 +342,7 @@ PostgreSQL, MongoDB Atlas, Qdrant Vector DB, XGBoost, Scikit-Learn, TreeSHAP, Do
                   </motion.div>
                 )}
 
-                {/* CHAPTER 03: LEARNING ECOSYSTEM */}
+                {/* STAGE 03: LEARNING THE STACK */}
                 {activeStage === 2 && (
                   <motion.div
                     key="stage-2"
@@ -336,15 +353,15 @@ PostgreSQL, MongoDB Atlas, Qdrant Vector DB, XGBoost, Scikit-Learn, TreeSHAP, Do
                   >
                     <div className="flex items-center space-x-2 text-xs font-mono text-[#00E0FF] uppercase tracking-wider">
                       <Cpu className="w-4 h-4 text-[#00E0FF]" />
-                      <span>{`CHAPTER 03 // EXPANDING THE TECH STACK`}</span>
+                      <span>{`STAGE 03 // LEARNING THE STACK`}</span>
                     </div>
 
                     <div>
                       <h3 className="text-2xl font-black font-mono text-white">
-                        Learning Ecosystem
+                        Technology Acquisition
                       </h3>
                       <p className="text-xs font-mono text-[#00E0FF] mt-1 font-semibold">
-                        Frontend • Async Backend • Databases
+                        Frontend → Async Backend → Relational DBs → AI/ML
                       </p>
                     </div>
 
@@ -353,28 +370,28 @@ PostgreSQL, MongoDB Atlas, Qdrant Vector DB, XGBoost, Scikit-Learn, TreeSHAP, Do
                         Disciplined Progression:
                       </div>
                       <p className="text-xs font-sans text-slate-300 leading-relaxed">
-                        Transitioned from fundamental scripts to modern developer frameworks: mastering Next.js 15, TypeScript type-safety, FastAPI asynchronous request cycles, and PostgreSQL relational schemas.
+                        HTML → CSS → JavaScript → React → Next.js → TypeScript → Node.js → Python → FastAPI → SQL → MongoDB → PostgreSQL → Docker → Git → AI/ML → RAG.
                       </p>
                     </div>
 
                     <div className="grid grid-cols-2 gap-2 text-[11px] font-mono">
                       <div className="p-2.5 bg-[#090c18] rounded-xl border border-slate-800 text-slate-200">
-                        • Next.js & React 19
+                        • Next.js 14/15 & React 19
                       </div>
                       <div className="p-2.5 bg-[#090c18] rounded-xl border border-slate-800 text-slate-200">
-                        • FastAPI & Python 3.12
+                        • FastAPI & Python 3.12+
                       </div>
                       <div className="p-2.5 bg-[#090c18] rounded-xl border border-slate-800 text-slate-200">
-                        • PostgreSQL & MongoDB
+                        • PostgreSQL & Neon Serverless
                       </div>
                       <div className="p-2.5 bg-[#090c18] rounded-xl border border-slate-800 text-slate-200">
-                        • Qdrant Vector DB
+                        • Qdrant Vector DB & RAG
                       </div>
                     </div>
                   </motion.div>
                 )}
 
-                {/* CHAPTER 04: BUILDING WORKSTATION */}
+                {/* STAGE 04: THE BUILDER EMERGES */}
                 {activeStage === 3 && (
                   <motion.div
                     key="stage-3"
@@ -385,34 +402,34 @@ PostgreSQL, MongoDB Atlas, Qdrant Vector DB, XGBoost, Scikit-Learn, TreeSHAP, Do
                   >
                     <div className="flex items-center space-x-2 text-xs font-mono text-amber-400 uppercase tracking-wider">
                       <Terminal className="w-4 h-4 text-amber-400" />
-                      <span>{`CHAPTER 04 // BUILDING PRODUCTION WORKSTATION`}</span>
+                      <span>{`STAGE 04 // THE BUILDER EMERGES`}</span>
                     </div>
 
                     <div>
                       <h3 className="text-2xl font-black font-mono text-white">
-                        Code to Infrastructure
+                        First Production SaaS
                       </h3>
                       <p className="text-xs font-mono text-amber-400 mt-1 font-semibold">
-                        Microservices • Containerization • Git Workflows
+                        AI Resume Builder & EvalMentor AI
                       </p>
                     </div>
 
                     <div className="p-4 rounded-2xl bg-[#090c18] border border-slate-800 space-y-2">
                       <div className="text-xs font-mono text-white font-bold uppercase">
-                        Workstation Parity:
+                        From Code to Shipped Products:
                       </div>
                       <p className="text-xs font-sans text-slate-300 leading-relaxed">
-                        Established rigorous engineering environments: multi-stage Docker builds, OpenAPI contract definitions, strict Pydantic payload models, and atomic Git commit branching workflows.
+                        Transitioned from exercises to full-scale SaaS. Built AI Resume Builder (50 Overleaf/LaTeX ATS templates, unpdf forensic parser) and EvalMentor AI (resume parsing with PyMuPDF, structured candidate rubric scoring).
                       </p>
                     </div>
 
                     <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs font-mono text-amber-300">
-                      Standardized on Clean Architecture: Decoupling Domain, Use Cases, Interfaces, and Infrastructure.
+                      Proved end-to-end full-stack execution: authenticating users, managing persistent databases, and delivering fast exports.
                     </div>
                   </motion.div>
                 )}
 
-                {/* CHAPTER 05: APPLICATION MOMENT */}
+                {/* STAGE 05: INTELLIGENCE SYSTEMS */}
                 {activeStage === 4 && (
                   <motion.div
                     key="stage-4"
@@ -421,40 +438,36 @@ PostgreSQL, MongoDB Atlas, Qdrant Vector DB, XGBoost, Scikit-Learn, TreeSHAP, Do
                     exit={{ opacity: 0, y: -15 }}
                     className="space-y-6"
                   >
-                    <div className="flex items-center space-x-2 text-xs font-mono text-[#00E0FF] uppercase tracking-wider">
-                      <Layers className="w-4 h-4 text-[#00E0FF]" />
-                      <span>{`CHAPTER 05 // APPLICATION BREAKTHROUGH`}</span>
+                    <div className="flex items-center space-x-2 text-xs font-mono text-[#7C5CFF] uppercase tracking-wider">
+                      <Cpu className="w-4 h-4 text-[#7C5CFF]" />
+                      <span>{`STAGE 05 // INTELLIGENCE SYSTEMS`}</span>
                     </div>
 
                     <div>
                       <h3 className="text-2xl font-black font-mono text-white">
-                        The Application Moment
+                        Agentic RAG Workflows
                       </h3>
-                      <p className="text-xs font-mono text-[#00E0FF] mt-1 font-semibold">
-                        Frontend → API Gateway → Database → Production Live
+                      <p className="text-xs font-mono text-[#7C5CFF] mt-1 font-semibold">
+                        CampusAgent AI • Qdrant Vector DB • FastAPI
                       </p>
                     </div>
 
-                    {/* Miniature Live Product Architecture UI */}
-                    <div className="p-4 rounded-2xl bg-[#090c18] border border-[#00E0FF]/40 space-y-3 font-mono text-xs">
-                      <div className="flex items-center justify-between text-slate-400 text-[10px]">
-                        <span>END-TO-END VERIFIED PIPELINE</span>
-                        <span className="text-emerald-400">● LIVE RUNTIME</span>
+                    <div className="p-4 rounded-2xl bg-[#090c18] border border-slate-800 space-y-2">
+                      <div className="text-xs font-mono text-white font-bold uppercase">
+                        Contextual Document Intelligence:
                       </div>
-                      <div className="p-2.5 rounded-xl bg-[#05060a] border border-slate-800 text-white">
-                        <span className="text-[#00FFA3]">Next.js 15:</span> Optimistic state, SSR rendering
-                      </div>
-                      <div className="p-2.5 rounded-xl bg-[#05060a] border border-slate-800 text-white">
-                        <span className="text-[#00E0FF]">FastAPI:</span> Asynchronous microservice routes
-                      </div>
-                      <div className="p-2.5 rounded-xl bg-[#05060a] border border-slate-800 text-white">
-                        <span className="text-purple-400">Persistence:</span> PostgreSQL ACID & Qdrant vectors
-                      </div>
+                      <p className="text-xs font-sans text-slate-300 leading-relaxed">
+                        Engineered end-to-end RAG architecture: dense embeddings, cosine distance vector indexing via Qdrant (&lt;45ms), parallel automated quiz grading with asyncio worker pools, and 15+ secured REST endpoints.
+                      </p>
+                    </div>
+
+                    <div className="p-3.5 rounded-xl bg-purple-950/20 border border-purple-500/30 text-xs font-mono text-purple-300">
+                      Eliminated LLM hallucinations by enforcing strict ground-truth prompt constraints and verifiable citations.
                     </div>
                   </motion.div>
                 )}
 
-                {/* CHAPTER 06: AI / ML PIPELINES */}
+                {/* STAGE 06: ENTERPRISE ARCHITECTURE */}
                 {activeStage === 5 && (
                   <motion.div
                     key="stage-5"
@@ -463,69 +476,75 @@ PostgreSQL, MongoDB Atlas, Qdrant Vector DB, XGBoost, Scikit-Learn, TreeSHAP, Do
                     exit={{ opacity: 0, y: -15 }}
                     className="space-y-6"
                   >
-                    <div className="flex items-center space-x-2 text-xs font-mono text-purple-400 uppercase tracking-wider">
-                      <Cpu className="w-4 h-4 text-purple-400" />
-                      <span>{`CHAPTER 06 // PRODUCTION AI & ML`}</span>
+                    <div className="flex items-center space-x-2 text-xs font-mono text-emerald-400 uppercase tracking-wider">
+                      <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                      <span>{`STAGE 06 // ENTERPRISE ARCHITECTURE`}</span>
                     </div>
 
                     <div>
                       <h3 className="text-2xl font-black font-mono text-white">
-                        Operational Intelligence
+                        Clean Architecture & Risk
                       </h3>
-                      <p className="text-xs font-mono text-purple-400 mt-1 font-semibold">
-                        RAG Semantic Search • TreeSHAP • XGBoost
+                      <p className="text-xs font-mono text-emerald-400 mt-1 font-semibold">
+                        RiskShield AI • AST Rule Compiler • TreeSHAP
                       </p>
                     </div>
 
                     <div className="p-4 rounded-2xl bg-[#090c18] border border-slate-800 space-y-2">
                       <div className="text-xs font-mono text-white font-bold uppercase">
-                        AI Without the Hype:
+                        Dual Decisioning Mesh:
                       </div>
                       <p className="text-xs font-sans text-slate-300 leading-relaxed">
-                        Integrated production ML into real applications: dense vector chunking with Qdrant for semantic search, calibrated tree-based fraud classification, and TreeSHAP explainability for regulatory transparency.
+                        Implemented Clean Hexagonal Architecture across 17 REST endpoints. Built parallel decisioning: AST-compiled visual policy rules alongside calibrated XGBoost ML ensemble, with TreeSHAP mathematical feature attribution for banking compliance.
                       </p>
                     </div>
 
-                    <div className="p-3.5 rounded-xl bg-purple-950/20 border border-purple-500/30 text-xs font-mono text-purple-300">
-                      Sub-second Groq LPU inference powering interactive student copilots and candidate interview grading.
+                    <div className="p-3.5 rounded-xl bg-emerald-950/20 border border-emerald-500/30 text-xs font-mono text-emerald-300">
+                      Sub-15ms P99 decision latency with PCI-DSS v4.0 PAN masking and immutable SHA-256 audit hashes.
                     </div>
                   </motion.div>
                 )}
 
-                {/* CHAPTER 07: PROJECT WORLDS */}
+                {/* STAGE 07: DECISION INTELLIGENCE */}
                 {activeStage === 6 && (
                   <motion.div
                     key="stage-6"
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -15 }}
-                    className="space-y-4"
+                    className="space-y-6"
                   >
-                    <div className="flex items-center space-x-2 text-xs font-mono text-[#00FFA3] uppercase tracking-wider">
-                      <Briefcase className="w-4 h-4 text-[#00FFA3]" />
-                      <span>{`CHAPTER 07 // 6 SHIPPED SYSTEMS`}</span>
+                    <div className="flex items-center space-x-2 text-xs font-mono text-[#00E0FF] uppercase tracking-wider">
+                      <BarChart3 className="w-4 h-4 text-[#00E0FF]" />
+                      <span>{`STAGE 07 // DECISION INTELLIGENCE`}</span>
                     </div>
 
-                    <h3 className="text-2xl font-black font-mono text-white">
-                      The Project Worlds
-                    </h3>
+                    <div>
+                      <h3 className="text-2xl font-black font-mono text-white">
+                        DecisionLens Universal BI
+                      </h3>
+                      <p className="text-xs font-mono text-[#00E0FF] mt-1 font-semibold">
+                        DuckDB • 269 Automated Tests • 30 Routes
+                      </p>
+                    </div>
 
-                    <div className="space-y-2">
-                      {PROJECTS.map((p) => (
-                        <div key={p.id} className="p-3 rounded-xl bg-[#090c18] border border-slate-800 flex items-center justify-between text-xs font-mono">
-                          <div>
-                            <span className="font-bold text-white">{p.title}</span>
-                            <span className="text-[10px] text-slate-500 block">{p.category}</span>
-                          </div>
-                          <span className="text-[10px] text-emerald-400">{p.status.includes('Live') ? 'LIVE' : 'ACTIVE'}</span>
-                        </div>
-                      ))}
+                    <div className="p-4 rounded-2xl bg-[#090c18] border border-slate-800 space-y-2">
+                      <div className="text-xs font-mono text-white font-bold uppercase">
+                        Production Hardened Engineering:
+                      </div>
+                      <p className="text-xs font-sans text-slate-300 leading-relaxed">
+                        Completed 30-phase zero-trust production release (v2.1.0-RC) with 269 passing pytests. In-memory DuckDB engine processing 1M+ records, statistical time-series revenue forecasting, and conversational business copilot.
+                      </p>
+                    </div>
+
+                    <div className="p-3.5 rounded-xl bg-[#00E0FF]/10 border border-[#00E0FF]/30 text-xs font-mono text-[#00E0FF]">
+                      Live on Vercel & Render with asynchronous multi-table ZIP processing and Windows-1252 byte normalization.
                     </div>
                   </motion.div>
                 )}
 
-                {/* CHAPTER 08: THE ENGINEERING GALAXY */}
-                {activeStage >= 7 && (
+                {/* STAGE 08: VOICE OF THE CUSTOMER — LOOP 2.0 */}
+                {activeStage === 7 && (
                   <motion.div
                     key="stage-7"
                     initial={{ opacity: 0, y: 15 }}
@@ -533,28 +552,77 @@ PostgreSQL, MongoDB Atlas, Qdrant Vector DB, XGBoost, Scikit-Learn, TreeSHAP, Do
                     exit={{ opacity: 0, y: -15 }}
                     className="space-y-6"
                   >
-                    <div className="flex items-center space-x-2 text-xs font-mono text-[#00E0FF] uppercase tracking-wider">
-                      <Sparkles className="w-4 h-4 text-[#00E0FF]" />
-                      <span>{`CHAPTER 08 // CONVERGENCE`}</span>
+                    <div className="flex items-center space-x-2 text-xs font-mono text-[#00FFA3] uppercase tracking-wider">
+                      <Sparkles className="w-4 h-4 text-[#00FFA3]" />
+                      <span>{`STAGE 08 // VOICE OF THE CUSTOMER`}</span>
+                    </div>
+
+                    <div>
+                      <h3 className="text-2xl font-black font-mono text-white">
+                        LOOP 2.0 AI Intelligence
+                      </h3>
+                      <p className="text-xs font-mono text-[#00FFA3] mt-1 font-semibold">
+                        Customer Feedback Intelligence • 15 Modules • 79 Tests
+                      </p>
+                    </div>
+
+                    <div className="p-4 rounded-2xl bg-[#090c18] border border-slate-800 space-y-2">
+                      <div className="text-xs font-mono text-white font-bold uppercase">
+                        Mathematically Grounded Insights:
+                      </div>
+                      <p className="text-xs font-sans text-slate-300 leading-relaxed">
+                        Engineered enterprise platform ingesting multi-channel signals (Zendesk, Intercom, App Stores, CSVs). Dual NLP pipeline (Sentiment, Plutchik-8 emotions, ABSA, 0–100 severity) and grounded root cause analysis with verifiable citations.
+                      </p>
+                    </div>
+
+                    <div className="p-3.5 rounded-xl bg-[#00FFA3]/10 border border-[#00FFA3]/30 text-xs font-mono text-[#00FFA3]">
+                      Managed Neon PostgreSQL via Prisma, multi-tenant RBAC, and 79/79 passing automated tests.
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* STAGE 09: FROM LEARNING TO SHIPPING */}
+                {activeStage >= 8 && (
+                  <motion.div
+                    key="stage-8"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    className="space-y-6"
+                  >
+                    <div className="flex items-center space-x-2 text-xs font-mono text-[#00FFA3] uppercase tracking-wider">
+                      <CheckCircle2 className="w-4 h-4 text-[#00FFA3]" />
+                      <span>{`STAGE 09 // FROM LEARNING TO SHIPPING`}</span>
                     </div>
 
                     <div>
                       <h3 className="text-3xl font-black font-mono text-white">
-                        The Connected Galaxy
+                        Engineering Command Center
                       </h3>
-                      <p className="text-xs font-mono text-[#00E0FF] mt-1 font-semibold">
-                        Anzar Khan // Engineering Core
+                      <p className="text-xs font-mono text-[#00FFA3] mt-1 font-semibold">
+                        &ldquo;I don&apos;t just learn technologies. I use them to build systems.&rdquo;
                       </p>
                     </div>
 
-                    <div className="p-4 rounded-2xl bg-[#090c18] border border-[#00E0FF]/40 space-y-2">
+                    <div className="p-4 rounded-2xl bg-[#090c18] border border-[#00FFA3]/40 space-y-2">
                       <p className="text-xs font-sans text-slate-300 leading-relaxed">
-                        Every technology, microservice, database, and project forms a cohesive software ecosystem. Explore the revolving orbital galaxy below.
+                        7 production platforms shipped, 75+ secured REST API endpoints, 350+ automated tests verified, and 100% full-stack architectural coverage across frontend, backend, databases, AI/ML, and DevOps.
                       </p>
                     </div>
 
-                    <div className="p-4 rounded-2xl bg-gradient-to-r from-[#00E0FF]/15 to-[#7C5CFF]/15 border border-[#00E0FF]/40 font-mono text-xs text-white">
-                      Ready to build high-impact production systems.
+                    <div className="grid grid-cols-2 gap-2 text-[10px] font-mono text-slate-300">
+                      <div className="p-2.5 rounded-xl bg-[#05060a] border border-slate-800">
+                        <span className="text-[#00FFA3] font-bold">7</span> Shipped Platforms
+                      </div>
+                      <div className="p-2.5 rounded-xl bg-[#05060a] border border-slate-800">
+                        <span className="text-[#00E0FF] font-bold">75+</span> REST Endpoints
+                      </div>
+                      <div className="p-2.5 rounded-xl bg-[#05060a] border border-slate-800">
+                        <span className="text-[#7C5CFF] font-bold">350+</span> Automated Tests
+                      </div>
+                      <div className="p-2.5 rounded-xl bg-[#05060a] border border-slate-800">
+                        <span className="text-amber-400 font-bold">100%</span> Full-Stack Coverage
+                      </div>
                     </div>
                   </motion.div>
                 )}
@@ -598,9 +666,14 @@ PostgreSQL, MongoDB Atlas, Qdrant Vector DB, XGBoost, Scikit-Learn, TreeSHAP, Do
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {PROJECTS.map((p) => (
                   <div key={p.id} className="p-4 rounded-2xl bg-[#090c18] border border-slate-800">
-                    <div className="text-sm font-bold text-white">{p.title}</div>
+                    <div className="flex items-center justify-between mb-1">
+                      <div className="text-sm font-bold text-white">{p.title}</div>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                        {p.status}
+                      </span>
+                    </div>
                     <div className="text-xs text-slate-400 mt-1">{p.description}</div>
-                    <div className="text-[10px] font-mono text-[#00E0FF] mt-2">{p.technologies.slice(0, 4).join(' • ')}</div>
+                    <div className="text-[10px] font-mono text-[#00E0FF] mt-2">{p.technologies.slice(0, 5).join(' • ')}</div>
                   </div>
                 ))}
               </div>
