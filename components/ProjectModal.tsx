@@ -3,7 +3,8 @@
 import React, { useEffect } from 'react';
 import { 
   X, Github, ExternalLink, Cpu, Layers, CheckCircle2, 
-  ShieldCheck, AlertTriangle, ArrowRight, Terminal, BookOpen 
+  ShieldCheck, AlertTriangle, ArrowRight, Terminal, BookOpen, 
+  Server, Database, Award, Sparkles 
 } from 'lucide-react';
 import { Project } from '@/lib/portfolioData';
 import { audioEngine } from '@/lib/audio';
@@ -26,6 +27,8 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
   }, [onClose]);
 
   if (!project) return null;
+
+  const accentColor = project.accentColor || '#00E0FF';
 
   return (
     <div 
@@ -50,6 +53,14 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         {/* Header Strip */}
         <div className="mb-6 pr-12">
           <div className="flex flex-wrap items-center gap-2 mb-2">
+            {project.maturityLevel && (
+              <span
+                className="text-[10px] font-mono px-3 py-1 rounded-full uppercase font-black tracking-wider"
+                style={{ backgroundColor: `${accentColor}20`, color: accentColor, border: `1px solid ${accentColor}40` }}
+              >
+                ★ {project.maturityLevel}
+              </span>
+            )}
             <span 
               className="text-[11px] font-mono px-3 py-1 rounded-full uppercase font-bold"
               style={{ backgroundColor: `${project.badgeColor || '#00E0FF'}15`, color: project.badgeColor || '#00E0FF' }}
@@ -64,7 +75,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           <h3 className="text-2xl sm:text-4xl font-black font-mono text-white tracking-tight">
             {project.title}
           </h3>
-          <p className="text-sm text-[#00E0FF] font-mono mt-1 font-semibold">
+          <p className="text-sm font-mono mt-1 font-semibold" style={{ color: accentColor }}>
             {project.tagline}
           </p>
         </div>
@@ -144,9 +155,37 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           </div>
         </div>
 
+        {/* Verified Production Deployment Info */}
+        {project.deploymentInfo && (
+          <div className="mb-8 p-5 rounded-2xl bg-[#05060a] border border-slate-800 space-y-3 font-mono text-xs">
+            <div className="flex items-center space-x-2 text-[#00FFA3] font-bold text-[11px] uppercase tracking-wider">
+              <Server className="w-4 h-4" />
+              <span>Verified Deployment & Infrastructure Telemetry</span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+              <div className="p-3 rounded-xl bg-[#090c18] border border-slate-800">
+                <div className="text-[10px] text-slate-500 uppercase">Host & Cloud Platform</div>
+                <div className="text-white font-bold mt-0.5">{project.deploymentInfo.platform}</div>
+              </div>
+              <div className="p-3 rounded-xl bg-[#090c18] border border-slate-800">
+                <div className="text-[10px] text-slate-500 uppercase">Runtime & Framework</div>
+                <div className="text-white font-bold mt-0.5">{project.deploymentInfo.runtime}</div>
+              </div>
+              <div className="p-3 rounded-xl bg-[#090c18] border border-slate-800">
+                <div className="text-[10px] text-slate-500 uppercase">Storage & Persistence</div>
+                <div className="text-purple-300 font-bold mt-0.5">{project.deploymentInfo.database}</div>
+              </div>
+              <div className="p-3 rounded-xl bg-[#090c18] border border-slate-800">
+                <div className="text-[10px] text-slate-500 uppercase">Test Suite Verification</div>
+                <div className="text-emerald-400 font-bold mt-0.5">{project.deploymentInfo.tests}</div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Step-by-Step Architecture Pipeline */}
         <div className="mb-8 p-6 rounded-2xl bg-[#05060a] border border-slate-800">
-          <ProjectArchitectureDiagram projectId={project.id} accentColor={project.accentColor || '#00E0FF'} />
+          <ProjectArchitectureDiagram projectId={project.id} accentColor={accentColor} />
         </div>
 
         {/* Key Features List */}
@@ -179,6 +218,19 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 </div>
               ))}
             </div>
+          </div>
+        )}
+
+        {/* Engineering Story: What I Learned Building This */}
+        {project.engineeringStory && (
+          <div className="mb-8 p-5 rounded-2xl bg-gradient-to-r from-[#7C5CFF]/15 to-[#00E0FF]/15 border border-[#7C5CFF]/40 space-y-2">
+            <div className="flex items-center space-x-2 text-xs font-mono text-[#00E0FF] uppercase font-bold">
+              <BookOpen className="w-4 h-4 text-[#00E0FF]" />
+              <span>The Engineering Story // What I Learned Building This</span>
+            </div>
+            <p className="text-xs sm:text-sm text-slate-200 font-sans leading-relaxed italic">
+              &ldquo;{project.engineeringStory}&rdquo;
+            </p>
           </div>
         )}
 
